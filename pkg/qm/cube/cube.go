@@ -95,6 +95,10 @@ func (c *Cube) String() string {
 }
 
 func (c *Cube) Equal(b *Cube) bool {
+	minusDiff := c.minus.SymmetricDifferenceCardinality(b.minus)
+	if minusDiff != 0 {
+		return false
+	}
 	allC := c.minus.Union(c.val)
 	allB := b.minus.Union(b.val)
 	return allC.SymmetricDifferenceCardinality(allB) == 0
