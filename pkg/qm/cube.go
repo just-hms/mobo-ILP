@@ -2,7 +2,6 @@ package qm
 
 import (
 	"errors"
-	"fmt"
 	"slices"
 
 	"github.com/bits-and-blooms/bitset"
@@ -73,21 +72,31 @@ func (c *Cube) Repr(size uint) string {
 	return string(res)
 }
 
+func (c *Cube) Equal(b *Cube) bool {
+	allC := c.minus.Union(c.val)
+	allB := b.minus.Union(b.val)
+	return allC.SymmetricDifferenceCardinality(allB) == 0
+}
+
 func MergeCubes(a, b *Cube) (*Cube, error) {
-	repra := a.Repr(10)
-	reprb := b.Repr(10)
-	fmt.Println(repra, reprb)
+	if a.Equal(b) {
+		return nil, errors.New("cannot merge they are equal")
+	}
 
 	minusDiff := a.minus.SymmetricDifferenceCardinality(b.minus)
 	if minusDiff != 0 {
 		return nil, errors.New("cannot merge different number of -")
 	}
 
-	i := a.val.SymmetricDifference(b.val)
+	allA := a.minus.Union(a.val)
+	allB := b.minus.Union(b.val)
+
+	i := allA.SymmetricDifference(allB)
 	if i.Count() != 1 {
 		return nil, errors.New("cannot merge too many ones and zero differences")
 	}
 
+	// TODO: decide what to do with val
 	return &Cube{
 		val:   a.val.Union(i),
 		minus: a.minus.Union(i),

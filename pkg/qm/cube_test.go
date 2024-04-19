@@ -18,39 +18,46 @@ func TestMergeCubes(t *testing.T) {
 		expErr bool
 	}{
 		{
-			name:   "Simple",
-			a:      qm.CubeFromValue(0),
-			b:      qm.CubeFromValue(1),
-			exp:    "000-",
-			expErr: false,
+			name:   "Identical Cubes",
+			a:      qm.CubeFromString("010-"),
+			b:      qm.CubeFromString("010-"),
+			expErr: true,
 		},
 		{
-			name:   "Distant",
-			a:      qm.CubeFromValue(0),
-			b:      qm.CubeFromValue(2),
-			exp:    "00-0",
-			expErr: false,
+			name: "Adjacent Cubes",
+			a:    qm.CubeFromValue(0),
+			b:    qm.CubeFromValue(1),
+			exp:  "000-",
+		},
+		{
+			name: "Distant",
+			a:    qm.CubeFromValue(0),
+			b:    qm.CubeFromValue(2),
+			exp:  "00-0",
 		},
 		{
 			name:   "Wrong",
 			a:      qm.CubeFromValue(1),
 			b:      qm.CubeFromValue(4),
-			exp:    "",
 			expErr: true,
 		},
 		{
-			name:   "Ok with minus",
-			a:      qm.CubeFromString("00-0"),
-			b:      qm.CubeFromString("10-0"),
-			exp:    "-0-0",
-			expErr: false,
+			name: "Ok with minus",
+			a:    qm.CubeFromString("00-0"),
+			b:    qm.CubeFromString("10-0"),
+			exp:  "-0-0",
 		},
 		{
 			name:   "Wrong with minus",
 			a:      qm.CubeFromString("00-1"),
 			b:      qm.CubeFromString("10-0"),
-			exp:    "",
 			expErr: true,
+		},
+		{
+			name: "Multiple Minus Signs",
+			a:    qm.CubeFromString("-0-1"),
+			b:    qm.CubeFromString("-0-0"),
+			exp:  "-0--",
 		},
 	}
 
