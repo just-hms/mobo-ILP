@@ -2,6 +2,7 @@ package qm
 
 import (
 	"errors"
+	"fmt"
 	"slices"
 
 	"github.com/bits-and-blooms/bitset"
@@ -39,6 +40,10 @@ func CubeFromString(val string) *Cube {
 			c.val.Set(uint(i))
 		case '-':
 			c.minus.Set(uint(i))
+		case '0':
+			continue
+		default:
+			panic(fmt.Sprintf("value %q not known", r))
 		}
 	}
 	return c
@@ -55,9 +60,27 @@ func (c *Cube) Ones() uint {
 	return c.val.DifferenceCardinality(c.minus)
 }
 
-func (c *Cube) Repr(size uint) string {
-	res := make([]rune, 0, size)
-	for i := range size {
+func (c *Cube) Repr(size uint) (string, error) {
+	res := c.String()
+
+	diff := len(res) - int(size)
+	if diff < 0 {
+		return "", fmt.Errorf("cannot represent %v in %d bits", res, size)
+	}
+
+	padding := make([]rune, 0, diff)
+	for i := range diff {
+		padding[i] = '0'
+	}
+
+	return string(padding) + res, nil
+
+}
+
+func (c *Cube) String() string {
+	biggest := max(c.val.Len(), c.minus.Len())
+	res := make([]rune, 0, biggest)
+	for i := range biggest {
 		toApp := '0'
 		switch {
 		case c.minus.Test(i):
@@ -65,7 +88,6 @@ func (c *Cube) Repr(size uint) string {
 		case c.val.Test(i):
 			toApp = '1'
 		}
-
 		res = append(res, toApp)
 	}
 	slices.Reverse(res)
@@ -96,7 +118,6 @@ func MergeCubes(a, b *Cube) (*Cube, error) {
 		return nil, errors.New("cannot merge too many ones and zero differences")
 	}
 
-	// TODO: decide what to do with val
 	return &Cube{
 		val:   a.val.Union(i),
 		minus: a.minus.Union(i),

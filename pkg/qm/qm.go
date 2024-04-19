@@ -1,20 +1,14 @@
 package qm
 
-func GetCubes(size uint, ones []uint) []*Cube {
-	bins := make([]*Cube, len(ones))
-	for i, o := range ones {
-		bins[i] = CubeFromValue(o)
-	}
-
+func GetCubes(size uint, ones []*Cube) []*Cube {
 	groups := make([]map[string]*Cube, size+1)
-
 	// first iteration
-	for _, bin := range bins {
+	for _, bin := range ones {
 		i := bin.Ones()
-		groups[i][bin.Repr(size)] = bin.Clone()
+		groups[i][bin.String()] = bin.Clone()
 	}
 
-	cubes := bins
+	cubes := ones
 
 	// todo check if any group is not empty
 	nextGroupEmpty := false
@@ -45,14 +39,11 @@ func GetCubes(size uint, ones []uint) []*Cube {
 					}
 
 					cubes = append(cubes, m)
-					nextGroups[i][m.Repr(size)] = m.Clone()
+					nextGroups[i][m.String()] = m.Clone()
 					nextGroupEmpty = false
 				}
-
 			}
-
 		}
-
 		groups = nextGroups
 	}
 	return cubes
