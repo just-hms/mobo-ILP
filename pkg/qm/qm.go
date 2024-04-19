@@ -22,7 +22,6 @@ func GetCubes(size uint, ones []*cube.Cube) []*cube.Cube {
 		// compare the i-group with the (i+1)-group
 		// if one implicant merge :
 		//   insert it to the next QM iteration i-group
-		//   insert it into the implicant list and update A
 
 		for i := 0; i < len(groups)-1; i++ {
 			g := groups[i]
