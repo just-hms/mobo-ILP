@@ -77,10 +77,14 @@ func (c *Cube) Repr(size uint) (string, error) {
 
 }
 
+func (c *Cube) Len() int {
+	return int(max(c.val.Len(), c.minus.Len()))
+}
+
 func (c *Cube) String() string {
-	biggest := max(c.val.Len(), c.minus.Len())
-	res := make([]rune, 0, biggest)
-	for i := range biggest {
+	len := c.Len()
+	res := make([]rune, 0, len)
+	for i := range uint(len) {
 		toApp := '0'
 		switch {
 		case c.minus.Test(i):

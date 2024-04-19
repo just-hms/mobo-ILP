@@ -1,9 +1,24 @@
 package qm
 
-import "github.com/just-hms/mobo/pkg/qm/cube"
+import (
+	"slices"
 
-func GetCubes(size uint, ones []*cube.Cube) []*cube.Cube {
+	"github.com/just-hms/mobo/pkg/qm/cube"
+)
+
+func initGroups(size int) []map[string]*cube.Cube {
 	groups := make([]map[string]*cube.Cube, size+1)
+	for i := range groups {
+		groups[i] = make(map[string]*cube.Cube)
+	}
+	return groups
+}
+
+func GetCubes(ones []*cube.Cube) []*cube.Cube {
+	size := slices.MaxFunc(ones, func(a, b *cube.Cube) int { return a.Len() - b.Len() }).Len()
+
+	groups := initGroups(size)
+
 	// first iteration
 	for _, c := range ones {
 		i := c.Ones()
@@ -13,11 +28,11 @@ func GetCubes(size uint, ones []*cube.Cube) []*cube.Cube {
 	cubes := ones
 
 	// todo check if any group is not empty
-	nextGroupEmpty := false
-	for !nextGroupEmpty {
-		nextGroupEmpty = true
 
-		nextGroups := make([]map[string]*cube.Cube, size+1)
+	for anyMerge := true; anyMerge; {
+
+		anyMerge = false
+		nextGroups := initGroups(size)
 
 		// compare the i-group with the (i+1)-group
 		// if one implicant merge :
@@ -41,7 +56,7 @@ func GetCubes(size uint, ones []*cube.Cube) []*cube.Cube {
 
 					cubes = append(cubes, m)
 					nextGroups[i][m.String()] = m.Clone()
-					nextGroupEmpty = false
+					anyMerge = true
 				}
 			}
 		}
