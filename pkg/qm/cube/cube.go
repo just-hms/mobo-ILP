@@ -1,4 +1,4 @@
-package qm
+package cube
 
 import (
 	"errors"
@@ -13,7 +13,7 @@ type Cube struct {
 	minus *bitset.BitSet
 }
 
-func CubeFromValue(val uint) *Cube {
+func New(val uint) *Cube {
 	c := &Cube{
 		val:   &bitset.BitSet{},
 		minus: &bitset.BitSet{},
@@ -25,7 +25,7 @@ func CubeFromValue(val uint) *Cube {
 	return c
 }
 
-func CubeFromString(val string) *Cube {
+func FromString(val string) *Cube {
 	c := &Cube{
 		val:   &bitset.BitSet{},
 		minus: &bitset.BitSet{},
@@ -100,7 +100,7 @@ func (c *Cube) Equal(b *Cube) bool {
 	return allC.SymmetricDifferenceCardinality(allB) == 0
 }
 
-func MergeCubes(a, b *Cube) (*Cube, error) {
+func Merge(a, b *Cube) (*Cube, error) {
 	if a.Equal(b) {
 		return nil, errors.New("cannot merge they are equal")
 	}

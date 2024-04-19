@@ -1,11 +1,13 @@
 package qm
 
-func GetCubes(size uint, ones []*Cube) []*Cube {
-	groups := make([]map[string]*Cube, size+1)
+import "github.com/just-hms/mobo/pkg/qm/cube"
+
+func GetCubes(size uint, ones []*cube.Cube) []*cube.Cube {
+	groups := make([]map[string]*cube.Cube, size+1)
 	// first iteration
-	for _, bin := range ones {
-		i := bin.Ones()
-		groups[i][bin.String()] = bin.Clone()
+	for _, c := range ones {
+		i := c.Ones()
+		groups[i][c.String()] = c.Clone()
 	}
 
 	cubes := ones
@@ -15,7 +17,7 @@ func GetCubes(size uint, ones []*Cube) []*Cube {
 	for !nextGroupEmpty {
 		nextGroupEmpty = true
 
-		nextGroups := make([]map[string]*Cube, size+1)
+		nextGroups := make([]map[string]*cube.Cube, size+1)
 
 		// compare the i-group with the (i+1)-group
 		// if one implicant merge :
@@ -30,10 +32,10 @@ func GetCubes(size uint, ones []*Cube) []*Cube {
 				continue
 			}
 
-			for _, cube := range g {
-				for _, cubeToCompare := range gToCompare {
+			for _, c := range g {
+				for _, cToCompare := range gToCompare {
 
-					m, err := MergeCubes(cube, cubeToCompare)
+					m, err := cube.Merge(c, cToCompare)
 					if err != nil {
 						continue
 					}
