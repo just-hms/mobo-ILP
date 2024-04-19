@@ -3,15 +3,15 @@ package qm
 func GetCubes(size uint, ones []uint) []*Cube {
 	bins := make([]*Cube, len(ones))
 	for i, o := range ones {
-		bins[i] = NewCube(o)
+		bins[i] = CubeFromValue(o)
 	}
 
 	groups := make([]map[string]*Cube, size+1)
 
 	// first iteration
 	for _, bin := range bins {
-		i := bin.Count()
-		groups[i][bin.DumpAsBits()] = bin.Clone()
+		i := bin.Ones()
+		groups[i][bin.Repr(size)] = bin.Clone()
 	}
 
 	cubes := bins
@@ -44,12 +44,8 @@ func GetCubes(size uint, ones []uint) []*Cube {
 						continue
 					}
 
-					if m.Count() == 0 {
-						continue
-					}
-
 					cubes = append(cubes, m)
-					nextGroups[i][m.DumpAsBits()] = m.Clone()
+					nextGroups[i][m.Repr(size)] = m.Clone()
 					nextGroupEmpty = false
 				}
 

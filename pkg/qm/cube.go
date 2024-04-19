@@ -2,49 +2,94 @@ package qm
 
 import (
 	"errors"
-	"strings"
+	"fmt"
+	"slices"
 
 	"github.com/bits-and-blooms/bitset"
 )
 
 type Cube struct {
-	*bitset.BitSet
+	val   *bitset.BitSet
+	minus *bitset.BitSet
 }
 
-func NewCube(val uint) *Cube {
+func CubeFromValue(val uint) *Cube {
 	c := &Cube{
-		BitSet: &bitset.BitSet{},
+		val:   &bitset.BitSet{},
+		minus: &bitset.BitSet{},
 	}
 	if val == 0 {
 		return c
 	}
-	c.BitSet.Set(val - 1)
+	c.val.Set(val - 1)
+	return c
+}
+
+func CubeFromString(val string) *Cube {
+	c := &Cube{
+		val:   &bitset.BitSet{},
+		minus: &bitset.BitSet{},
+	}
+
+	rev := []rune(val)
+	slices.Reverse(rev)
+
+	for i, r := range rev {
+		switch r {
+		case '1':
+			c.val.Set(uint(i))
+		case '-':
+			c.minus.Set(uint(i))
+		}
+	}
 	return c
 }
 
 func (c *Cube) Clone() *Cube {
 	return &Cube{
-		BitSet: c.BitSet.Clone(),
+		val:   c.val.Clone(),
+		minus: c.minus.Clone(),
 	}
 }
 
-func (c *Cube) Repr(size int) string {
-	bits := c.DumpAsBits()
-	if bits == "" {
-		// TODO: make this better
-		bits = "0000000000000000000000000000000000000000000000000000"
+func (c *Cube) Ones() uint {
+	return c.val.DifferenceCardinality(c.minus)
+}
+
+func (c *Cube) Repr(size uint) string {
+	res := make([]rune, 0, size)
+	for i := range size {
+		toApp := '0'
+		switch {
+		case c.minus.Test(i):
+			toApp = '-'
+		case c.val.Test(i):
+			toApp = '1'
+		}
+
+		res = append(res, toApp)
 	}
-	r, _ := strings.CutSuffix(bits, ".")
-	return r[len(r)-size:]
+	slices.Reverse(res)
+	return string(res)
 }
 
 func MergeCubes(a, b *Cube) (*Cube, error) {
-	distance := a.DifferenceCardinality(b.BitSet)
-	if distance > 1 {
-		return nil, errors.New("cubes are too distant")
+	repra := a.Repr(10)
+	reprb := b.Repr(10)
+	fmt.Println(repra, reprb)
+
+	minusDiff := a.minus.SymmetricDifferenceCardinality(b.minus)
+	if minusDiff != 0 {
+		return nil, errors.New("cannot merge different number of -")
+	}
+
+	i := a.val.SymmetricDifference(b.val)
+	if i.Count() != 1 {
+		return nil, errors.New("cannot merge too many ones and zero differences")
 	}
 
 	return &Cube{
-		BitSet: a.Union(b.BitSet),
+		val:   a.val.Union(i),
+		minus: a.minus.Union(i),
 	}, nil
 }

@@ -13,47 +13,63 @@ func TestMergeCubes(t *testing.T) {
 
 	testcases := []struct {
 		name   string
-		ones   [2]uint
+		a, b   *qm.Cube
 		exp    string
 		expErr bool
 	}{
 		{
-			name:   "0000 x 0000",
-			ones:   [2]uint{0, 0},
-			exp:    "0000",
+			name:   "Simple",
+			a:      qm.CubeFromValue(0),
+			b:      qm.CubeFromValue(1),
+			exp:    "000-",
 			expErr: false,
 		},
 		{
-			name:   "0000 x 0001",
-			ones:   [2]uint{0, 1},
-			exp:    "0001",
+			name:   "Distant",
+			a:      qm.CubeFromValue(0),
+			b:      qm.CubeFromValue(2),
+			exp:    "00-0",
 			expErr: false,
 		},
 		{
-			name:   "0001 x 0100",
-			ones:   [2]uint{1, 4},
+			name:   "Wrong",
+			a:      qm.CubeFromValue(1),
+			b:      qm.CubeFromValue(4),
+			exp:    "",
+			expErr: true,
+		},
+		{
+			name:   "Ok with minus",
+			a:      qm.CubeFromString("00-0"),
+			b:      qm.CubeFromString("10-0"),
+			exp:    "-0-0",
+			expErr: false,
+		},
+		{
+			name:   "Wrong with minus",
+			a:      qm.CubeFromString("00-1"),
+			b:      qm.CubeFromString("10-0"),
 			exp:    "",
 			expErr: true,
 		},
 	}
 
 	for _, tt := range testcases {
+
+		tt := tt
+
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			a := qm.NewCube(tt.ones[0])
-			b := qm.NewCube(tt.ones[1])
-
-			res, err := qm.MergeCubes(a, b)
+			res, err := qm.MergeCubes(tt.a, tt.b)
 			if tt.expErr {
-				req.Error(err)
-			} else {
-				req.NoError(err)
+				req.Error(err, tt.name)
+				return
 			}
 
-			if !tt.expErr {
-				req.Equal(tt.exp, res.Repr(len(tt.exp)))
-			}
+			req.NoError(err, tt.name)
+			size := uint(len(tt.exp))
+			req.Equal(tt.exp, res.Repr(size), tt.name)
 		})
 	}
 }
