@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"slices"
+	"strconv"
 
 	"github.com/bits-and-blooms/bitset"
 )
@@ -14,15 +15,7 @@ type Cube struct {
 }
 
 func New(val uint) *Cube {
-	c := &Cube{
-		val:   &bitset.BitSet{},
-		minus: &bitset.BitSet{},
-	}
-	if val == 0 {
-		return c
-	}
-	c.val.Set(val - 1)
-	return c
+	return FromString(strconv.FormatInt(int64(val), 2))
 }
 
 func FromString(val string) *Cube {
@@ -63,12 +56,12 @@ func (c *Cube) Ones() uint {
 func (c *Cube) Repr(size uint) (string, error) {
 	res := c.String()
 
-	diff := len(res) - int(size)
+	diff := int(size) - len(res)
 	if diff < 0 {
-		return "", fmt.Errorf("cannot represent %v in %d bits", res, size)
+		return "", fmt.Errorf("cannot represent %q in %d bits", res, size)
 	}
 
-	padding := make([]rune, 0, diff)
+	padding := make([]rune, diff)
 	for i := range diff {
 		padding[i] = '0'
 	}
@@ -106,6 +99,10 @@ func (c *Cube) Equal(b *Cube) bool {
 	allC := c.minus.Union(c.val)
 	allB := b.minus.Union(b.val)
 	return allC.SymmetricDifferenceCardinality(allB) == 0
+}
+
+func (c *Cube) Covers(one uint) bool {
+	return c.minus.Test(one) || c.val.Test(one)
 }
 
 func Merge(a, b *Cube) (*Cube, error) {

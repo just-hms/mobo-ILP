@@ -27,8 +27,6 @@ func GetCubes(ones []*cube.Cube) []*cube.Cube {
 
 	cubes := ones
 
-	// todo check if any group is not empty
-
 	for anyMerge := true; anyMerge; {
 
 		anyMerge = false
@@ -54,9 +52,11 @@ func GetCubes(ones []*cube.Cube) []*cube.Cube {
 						continue
 					}
 
-					cubes = append(cubes, m)
-					nextGroups[i][m.String()] = m.Clone()
-					anyMerge = true
+					if _, ok := nextGroups[i][m.String()]; !ok {
+						nextGroups[i][m.String()] = m.Clone()
+						cubes = append(cubes, m)
+						anyMerge = true
+					}
 				}
 			}
 		}

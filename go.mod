@@ -5,6 +5,7 @@ go 1.22.0
 require (
 	github.com/bits-and-blooms/bitset v1.13.0
 	github.com/stretchr/testify v1.9.0
+	golang.org/x/exp v0.0.0-20240416160154-fe59bbe5cc7f
 )
 
 require (

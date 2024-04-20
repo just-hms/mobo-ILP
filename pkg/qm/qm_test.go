@@ -1,6 +1,7 @@
 package qm_test
 
 import (
+	"slices"
 	"testing"
 
 	"github.com/just-hms/mobo/pkg/qm"
@@ -16,6 +17,7 @@ func TestGetCubes(t *testing.T) {
 		name  string
 		input []*cube.Cube
 		exp   []*cube.Cube
+		size  int
 	}{
 		{
 			name: "Simple",
@@ -35,6 +37,43 @@ func TestGetCubes(t *testing.T) {
 				cube.FromString("0-01"),
 				cube.FromString("-101"),
 			},
+			size: 4,
+		},
+		{
+			name: "Example",
+			input: []*cube.Cube{
+				cube.New(2),
+				cube.New(3),
+				cube.New(4),
+				cube.New(5),
+				cube.New(7),
+				cube.New(12),
+				cube.New(13),
+				cube.New(15),
+			},
+			exp: []*cube.Cube{
+				cube.FromString("0010"),
+				cube.FromString("0011"),
+				cube.FromString("0100"),
+				cube.FromString("0101"),
+				cube.FromString("0111"),
+				cube.FromString("1100"),
+				cube.FromString("1101"),
+				cube.FromString("1111"),
+
+				cube.FromString("-1-1"),
+				cube.FromString("-10-"),
+				cube.FromString("-100"),
+				cube.FromString("001-"),
+				cube.FromString("-101"),
+				cube.FromString("-111"),
+				cube.FromString("0-11"),
+				cube.FromString("01-1"),
+				cube.FromString("010-"),
+				cube.FromString("110-"),
+				cube.FromString("11-1"),
+			},
+			size: 4,
 		},
 	}
 
@@ -42,13 +81,27 @@ func TestGetCubes(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			t.Parallel()
+			// t.Parallel()
 			got := qm.GetCubes(tt.input)
 
-			req.Equal(len(tt.exp), len(got), tt.name)
-			for i := range tt.exp {
-				req.Equal(tt.exp[i].String(), got[i].String(), tt.name)
+			gotDump := []string{}
+			for _, g := range got {
+				repr, err := g.Repr(uint(tt.size))
+				req.NoError(err)
+				gotDump = append(gotDump, repr)
 			}
+			slices.Sort(gotDump)
+
+			expDump := []string{}
+			for _, g := range tt.exp {
+				repr, err := g.Repr(uint(tt.size))
+				req.NoError(err)
+				expDump = append(expDump, repr)
+			}
+			slices.Sort(expDump)
+
+			req.Equal(expDump, gotDump)
+
 		})
 	}
 }
