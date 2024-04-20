@@ -103,23 +103,12 @@ func (c *Cube) Equal(b *Cube) bool {
 
 func (c *Cube) Covers(one uint) bool {
 
-	// 010000
-	// 100001
-	// ------
-	// 1-0001
-
-	// 100000
-
 	input := New(one).val
 
-	for i := range uint(64) {
-		if !(c.minus.Test(i) || (input.Test(i) == c.val.Test(i))) {
-			return false
-		}
-	}
+	maskC := c.val.Union(c.minus)
+	maskInput := input.Union(c.minus)
 
-	return true
-
+	return maskC.Equal(maskInput)
 }
 
 func Merge(a, b *Cube) (*Cube, error) {

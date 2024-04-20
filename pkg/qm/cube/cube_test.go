@@ -164,6 +164,30 @@ func TestCovers(t *testing.T) {
 			one:  0b101,
 			exp:  true,
 		},
+		{
+			name: "Docs 0",
+			a:    cube.FromString("1-0001"),
+			one:  0b100001,
+			exp:  true,
+		},
+		{
+			name: "Docs 1",
+			a:    cube.FromString("1-0001"),
+			one:  0b000100,
+			exp:  false,
+		},
+		{
+			name: "Docs 2",
+			a:    cube.FromString("1-0001"),
+			one:  0b110001,
+			exp:  true,
+		},
+		{
+			name: "Docs 3",
+			a:    cube.FromString("1-0001"),
+			one:  0b010000,
+			exp:  false,
+		},
 	}
 
 	for _, tt := range testcases {
