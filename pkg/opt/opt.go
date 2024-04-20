@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"slices"
 	"strings"
+	"sync"
 
 	"github.com/just-hms/mobo/pkg/qm"
 	"github.com/just-hms/mobo/pkg/qm/cube"
@@ -44,6 +45,41 @@ func uniqueCubes(cubes []*cube.Cube) []*UniqueCube {
 func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	cubes := []*cube.Cube{}
 
+	results := make([][]*cube.Cube, len(outs))
+	var wg sync.WaitGroup
+	wg.Add(len(outs))
+
+	for i, o := range outs {
+		i := i
+		o := o
+		go func() {
+			defer wg.Done()
+			input := make([]*cube.Cube, 0, len(o.Ones)+len(o.DontCares))
+			for _, one := range o.Ones {
+				input = append(input, cube.New(one))
+			}
+			for _, dc := range o.DontCares {
+				input = append(input, cube.New(dc))
+			}
+
+			res := qm.GetCubes(input)
+
+			// remove cubes which cover only dontCares
+			res = slices.DeleteFunc(res, func(c *cube.Cube) bool {
+				for _, one := range o.Ones {
+					if c.Covers(one) {
+						return false
+					}
+				}
+				return true
+			})
+
+			results[i] = res
+		}()
+	}
+
+	wg.Wait()
+
 	// problem generation ----
 	constraints := []string{}
 	mapping := map[string]*cube.Cube{}
@@ -51,27 +87,8 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	iCount := 1
 	// problem generation ----
 
-	for _, o := range outs {
-
-		input := make([]*cube.Cube, 0, len(o.Ones)+len(o.DontCares))
-		for _, one := range o.Ones {
-			input = append(input, cube.New(one))
-		}
-		for _, dc := range o.DontCares {
-			input = append(input, cube.New(dc))
-		}
-
-		res := qm.GetCubes(input)
-
-		// remove cubes which cover only dontCares
-		res = slices.DeleteFunc(res, func(c *cube.Cube) bool {
-			for _, one := range o.Ones {
-				if c.Covers(one) {
-					return false
-				}
-			}
-			return true
-		})
+	for i, o := range outs {
+		res := results[i]
 
 		// problem generation ----
 		for _, one := range o.Ones {
