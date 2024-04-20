@@ -42,17 +42,13 @@ func uniqueCubes(cubes []*cube.Cube) []*UniqueCube {
 	return maps.Values(uniqueCubes)
 }
 
-func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
-	cubes := []*cube.Cube{}
-
+func getCubes(outs []*Output) [][]*cube.Cube {
 	results := make([][]*cube.Cube, len(outs))
-	var wg sync.WaitGroup
-	wg.Add(len(outs))
+	var wg sync.WaitGroup // WaitGroup to wait for all goroutines to finish
 
 	for i, o := range outs {
-		i := i
-		o := o
-		go func() {
+		wg.Add(1)   // Increment the WaitGroup counter
+		go func() { // Launch a goroutine
 			defer wg.Done()
 			input := make([]*cube.Cube, 0, len(o.Ones)+len(o.DontCares))
 			for _, one := range o.Ones {
@@ -79,18 +75,25 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	}
 
 	wg.Wait()
+	return results
+}
 
-	// problem generation ----
+func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
+	cubes := []*cube.Cube{}
+
+	// heavy computation
+	results := getCubes(outs)
+
+	// problem generation
+
 	constraints := []string{}
 	mapping := map[string]*cube.Cube{}
 	reverseMapping := map[*cube.Cube]string{}
 	iCount := 1
-	// problem generation ----
 
 	for i, o := range outs {
 		res := results[i]
 
-		// problem generation ----
 		for _, one := range o.Ones {
 			covers := []string{}
 			for i, c := range res {
@@ -105,14 +108,12 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 			constraints = append(constraints, fmt.Sprintf("c%d: ", len(constraints))+strings.Join(covers, "+")+" >= 1 ")
 		}
 		iCount += len(res)
-		// problem generation ----
 
 		cubes = append(cubes, res...)
 	}
 
 	uniqueCubes := uniqueCubes(cubes)
 
-	// problem generation ----
 	cost := []string{}
 	for i, c := range uniqueCubes {
 		key := fmt.Sprintf("z%d", i+1)
@@ -127,7 +128,6 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 		cost = append(cost, key)
 	}
 
-	// problem generation ----
 	template := strings.ReplaceAll(template, "{obj}", " obj: "+strings.Join(cost, "+"))
 	template = strings.ReplaceAll(template, "{constraints}", " "+strings.Join(constraints, "\n "))
 	template = strings.ReplaceAll(template, "{bounds}", " "+strings.Join(maps.Keys(mapping), "\n "))

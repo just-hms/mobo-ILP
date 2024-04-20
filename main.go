@@ -1,9 +1,13 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"math/rand"
+	"os"
+
+	"runtime/pprof"
 
 	"github.com/just-hms/mobo/pkg/opt"
 	"golang.org/x/exp/maps"
@@ -26,7 +30,21 @@ func randomNonRepeatingNumbers(min, max, quantity int) []uint {
 	return maps.Keys(generated)
 }
 
+var cpuprofile = flag.Bool("profile", false, "write cpu profile to \"data/cpu.prof\"")
+
 func main() {
+	flag.Parse()
+
+	if *cpuprofile {
+		f, err := os.Create("data/cpu.prof")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		pprof.StartCPUProfile(f)
+		defer pprof.StopCPUProfile()
+	}
+
 	outs := []*opt.Output{
 		{Ones: randomNonRepeatingNumbers(0, 500, 300)},
 		{Ones: randomNonRepeatingNumbers(0, 500, 300)},
