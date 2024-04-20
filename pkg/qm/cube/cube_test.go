@@ -137,25 +137,31 @@ func TestCovers(t *testing.T) {
 		{
 			name: "Simple",
 			a:    cube.FromString("0001"),
-			one:  1,
+			one:  0b001,
 			exp:  true,
 		},
 		{
 			name: "Strange",
 			a:    cube.FromString("0-0-"),
-			one:  1,
+			one:  0b001,
 			exp:  true,
 		},
 		{
 			name: "Strange with one",
 			a:    cube.FromString("0-01"),
-			one:  1,
+			one:  0b001,
 			exp:  true,
 		},
 		{
 			name: "Strange with one, seems broken",
 			a:    cube.FromString("-1"),
-			one:  1,
+			one:  0b001,
+			exp:  true,
+		},
+		{
+			name: "Something else broken",
+			a:    cube.FromString("-01"),
+			one:  0b101,
 			exp:  true,
 		},
 	}

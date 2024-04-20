@@ -102,13 +102,24 @@ func (c *Cube) Equal(b *Cube) bool {
 }
 
 func (c *Cube) Covers(one uint) bool {
-	cOnes := c.val.Difference(c.minus)
 
-	remainingOnes := New(one).val.Difference(c.minus)
-	if cOnes.Count() == 0 && remainingOnes.Count() == 0 {
-		return true
+	// 010000
+	// 100001
+	// ------
+	// 1-0001
+
+	// 100000
+
+	input := New(one).val
+
+	for i := range uint(64) {
+		if !(c.minus.Test(i) || (input.Test(i) == c.val.Test(i))) {
+			return false
+		}
 	}
-	return cOnes.Equal(remainingOnes)
+
+	return true
+
 }
 
 func Merge(a, b *Cube) (*Cube, error) {

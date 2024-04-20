@@ -98,14 +98,14 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 			covers := []string{}
 			for i, c := range res {
 				if c.Covers(one) {
-					key := fmt.Sprintf("x%d", i+iCount)
+					key := fmt.Sprintf("v%d", i+iCount)
 					covers = append(covers, key)
 					mapping[key] = c
 					reverseMapping[c] = key
 				}
 			}
 
-			constraints = append(constraints, fmt.Sprintf("c%d: ", len(constraints))+strings.Join(covers, "+")+" >= 1 ")
+			constraints = append(constraints, strings.Join(covers, "+")+" >= 1 ")
 		}
 		iCount += len(res)
 
@@ -124,7 +124,7 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 			refs = append(refs, fmt.Sprintf("%.5f ", 1/(float64(len(outs))+1))+reverseMapping[c])
 		}
 
-		constraints = append(constraints, fmt.Sprintf("c%d: ", len(constraints))+fmt.Sprintf("%s - %s >= 0", key, strings.Join(refs, "-")))
+		constraints = append(constraints, fmt.Sprintf("%s - %s >= 0", key, strings.Join(refs, "-")))
 		cost = append(cost, key)
 	}
 
