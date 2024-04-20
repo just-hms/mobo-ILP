@@ -1,96 +1,62 @@
+Minimize
+ obj: z1+z2+z3+z4+z5+z6+z7+z8+z9+z10+z11
+Subject To
+ cov1: x1 > 1 
+ cov2: x2 > 1 
+ cov3: x3+x5+x7 > 1 
+ cov5: x4+x6 > 1 
+ 
 
-Log started (V22.1.1.0) Sat Apr 20 03:32:16 2024
+ cov1: x8 > 1 
+ cov5: x9+x12 > 1 
+ cov6: x10 > 1 
+ cov7: x11+x13+x14 > 1 
+ 
 
-Warning, line 19: Characters after RHS value are ignored.
-Warning, line 20: Characters after RHS value are ignored.
-Warning, line 21: Characters after RHS value are ignored.
-Warning, line 22: Characters after RHS value are ignored.
-Warning, line 23: Characters after RHS value are ignored.
-Warning, line 24: Characters after RHS value are ignored.
-Warning, line 25: Characters after RHS value are ignored.
-Warning, line 26: Characters after RHS value are ignored.
-Warning, line 27: Characters after RHS value are ignored.
-Warning, line 28: Characters after RHS value are ignored.
-Warning, line 29: Characters after RHS value are ignored.
-Warning, line 30: Characters after RHS value are ignored.
-Warning, line 31: Characters after RHS value are ignored.
-Warning, line 32: Characters after RHS value are ignored.
-Warning, line 33: Characters after RHS value are ignored.
-Warning, line 34: Characters after RHS value are ignored.
-Warning, line 35: Characters after RHS value are ignored.
-Warning, line 36: Characters after RHS value are ignored.
-Warning, line 37: Characters after RHS value are ignored.
-Warning, line 38: Characters after RHS value are ignored.
+ z1 > 0.33333 x3
+ z2 > 0.33333 x5
+ z3 > 0.33333 x6+0.33333 x12
+ z4 > 0.33333 x7
+ z5 > 0.33333 x14
+ z6 > 0.33333 x1+0.33333 x8
+ z7 > 0.33333 x2
+ z8 > 0.33333 x4+0.33333 x9
+ z9 > 0.33333 x10
+ z10 > 0.33333 x11
+ z11 > 0.33333 x13
+Binary
+ x11
+ x13
+ z2
+ z3
+ x2
+ x7
+ x8
+ x9
+ z6
+ z7
+ z8
+ x4
+ x6
+ x14
+ z1
+ z5
+ z10
+ z11
+ x3
+ x10
+ x12
+ z4
+ z9
+ x1
+ x5
+End
 
-Problem 'data/test.lp' read.
-Read time = 0.00 sec. (0.00 ticks)
-Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
-Found incumbent of value 20.000000 after 0.00 sec. (0.00 ticks)
+\ map[x1:1 x10:110 x11:111 x12:-01 x13:1-1 x14:11- x2:10 x3:11 x4:101 x5:-1 x6:-01 x7:1- x8:1 x9:101 z1:11 z10:111 z11:1-1 z2:-1 z3:-01 z4:1- z5:11- z6:1 z7:10 z8:101 z9:110]
 
-Root node processing (before b&c):
-  Real time             =    0.00 sec. (0.00 ticks)
-Parallel b&c, 16 threads:
-  Real time             =    0.00 sec. (0.00 ticks)
-  Sync time (average)   =    0.00 sec.
-  Wait time (average)   =    0.00 sec.
-                          ------------
-Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+Log started (V22.1.1.0) Sat Apr 20 03:54:52 2024
 
-Solution pool: 1 solution saved.
-
-MIP - Integer optimal solution:  Objective =  2.0000000000e+01
-Solution time =    0.01 sec.  Iterations = 0  Nodes = 0 (1)
-Deterministic time = 0.00 ticks  (0.33 ticks/sec)
-
-
-Incumbent solution
-Variable Name           Solution Value
-z1                            1.000000
-z2                            1.000000
-z3                            1.000000
-z4                            1.000000
-z5                            1.000000
-z6                            1.000000
-z7                            1.000000
-z8                            1.000000
-z9                            1.000000
-z10                           1.000000
-z11                           1.000000
-z12                           1.000000
-z13                           1.000000
-z14                           1.000000
-z15                           1.000000
-z16                           1.000000
-z17                           1.000000
-z18                           1.000000
-z19                           1.000000
-z20                           1.000000
-x1                            1.000000
-x2                            1.000000
-x7                            1.000000
-x3                            1.000000
-x8                            1.000000
-x9                            1.000000
-x4                            1.000000
-x6                            1.000000
-x5                            1.000000
-x10                           1.000000
-x11                           1.000000
-x12                           1.000000
-x13                           1.000000
-x14                           1.000000
-x18                           1.000000
-x15                           1.000000
-x16                           1.000000
-x19                           1.000000
-x17                           1.000000
-x20                           1.000000
-x21                           1.000000
-x22                           1.000000
-x23                           1.000000
-
-Log started (V22.1.1.0) Sat Apr 20 03:35:41 2024
-
+Warning, line 16: Characters after RHS value are ignored.
 Warning, line 17: Characters after RHS value are ignored.
 Warning, line 18: Characters after RHS value are ignored.
 Warning, line 19: Characters after RHS value are ignored.
@@ -101,204 +67,6 @@ Warning, line 23: Characters after RHS value are ignored.
 Warning, line 24: Characters after RHS value are ignored.
 Warning, line 25: Characters after RHS value are ignored.
 Warning, line 26: Characters after RHS value are ignored.
-Warning, line 27: Characters after RHS value are ignored.
-
-Problem 'data/test.lp' read.
-Read time = 0.00 sec. (0.00 ticks)
-Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
-Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
-
-Root node processing (before b&c):
-  Real time             =    0.00 sec. (0.00 ticks)
-Parallel b&c, 16 threads:
-  Real time             =    0.00 sec. (0.00 ticks)
-  Sync time (average)   =    0.00 sec.
-  Wait time (average)   =    0.00 sec.
-                          ------------
-Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
-
-Solution pool: 1 solution saved.
-
-MIP - Integer optimal solution:  Objective =  1.1000000000e+01
-Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
-Deterministic time = 0.00 ticks  (0.73 ticks/sec)
-
-
-Incumbent solution
-Variable Name           Solution Value
-z1                            1.000000
-z2                            1.000000
-z3                            1.000000
-z4                            1.000000
-z5                            1.000000
-z6                            1.000000
-z7                            1.000000
-z8                            1.000000
-z9                            1.000000
-z10                           1.000000
-z11                           1.000000
-x1                            1.000000
-x2                            1.000000
-x3                            1.000000
-x5                            1.000000
-x6                            1.000000
-x4                            1.000000
-x7                            1.000000
-x8                            1.000000
-x9                            1.000000
-x12                           1.000000
-x10                           1.000000
-x11                           1.000000
-x13                           1.000000
-x14                           1.000000
-
-Log started (V22.1.1.0) Sat Apr 20 03:37:18 2024
-
-Warning, line 17: Characters after RHS value are ignored.
-Warning, line 18: Characters after RHS value are ignored.
-Warning, line 19: Characters after RHS value are ignored.
-Warning, line 20: Characters after RHS value are ignored.
-Warning, line 21: Characters after RHS value are ignored.
-Warning, line 22: Characters after RHS value are ignored.
-Warning, line 23: Characters after RHS value are ignored.
-Warning, line 24: Characters after RHS value are ignored.
-Warning, line 25: Characters after RHS value are ignored.
-Warning, line 26: Characters after RHS value are ignored.
-Warning, line 27: Characters after RHS value are ignored.
-
-Problem 'data/test.lp' read.
-Read time = 0.00 sec. (0.00 ticks)
-Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
-Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
-Tried aggregator 1 time.
-MIP Presolve eliminated 19 rows and 25 columns.
-All rows and columns eliminated.
-Presolve time = 0.00 sec. (0.01 ticks)
-
-Root node processing (before b&c):
-  Real time             =    0.00 sec. (0.01 ticks)
-Parallel b&c, 16 threads:
-  Real time             =    0.00 sec. (0.00 ticks)
-  Sync time (average)   =    0.00 sec.
-  Wait time (average)   =    0.00 sec.
-                          ------------
-Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
-
-Solution pool: 1 solution saved.
-
-MIP - Integer optimal solution:  Objective =  1.1000000000e+01
-Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
-Deterministic time = 0.01 ticks  (3.44 ticks/sec)
-
-
-Incumbent solution
-Variable Name           Solution Value
-z1                            1.000000
-z2                            1.000000
-z3                            1.000000
-z4                            1.000000
-z5                            1.000000
-z6                            1.000000
-z7                            1.000000
-z8                            1.000000
-z9                            1.000000
-z10                           1.000000
-z11                           1.000000
-x1                            1.000000
-x2                            1.000000
-x3                            1.000000
-x5                            1.000000
-x7                            1.000000
-x4                            1.000000
-x6                            1.000000
-x8                            1.000000
-x9                            1.000000
-x12                           1.000000
-x10                           1.000000
-x11                           1.000000
-x13                           1.000000
-x14                           1.000000
-
-Log started (V22.1.1.0) Sat Apr 20 03:37:43 2024
-
-Warning, line 17: Characters after RHS value are ignored.
-Warning, line 18: Characters after RHS value are ignored.
-Warning, line 19: Characters after RHS value are ignored.
-Warning, line 20: Characters after RHS value are ignored.
-Warning, line 21: Characters after RHS value are ignored.
-Warning, line 22: Characters after RHS value are ignored.
-Warning, line 23: Characters after RHS value are ignored.
-Warning, line 24: Characters after RHS value are ignored.
-Warning, line 25: Characters after RHS value are ignored.
-Warning, line 26: Characters after RHS value are ignored.
-Warning, line 27: Characters after RHS value are ignored.
-
-Problem 'data/test.lp' read.
-Read time = 0.00 sec. (0.00 ticks)
-Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
-Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
-Tried aggregator 1 time.
-MIP Presolve eliminated 19 rows and 25 columns.
-All rows and columns eliminated.
-Presolve time = 0.00 sec. (0.01 ticks)
-
-Root node processing (before b&c):
-  Real time             =    0.00 sec. (0.01 ticks)
-Parallel b&c, 16 threads:
-  Real time             =    0.00 sec. (0.00 ticks)
-  Sync time (average)   =    0.00 sec.
-  Wait time (average)   =    0.00 sec.
-                          ------------
-Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
-
-Solution pool: 1 solution saved.
-
-MIP - Integer optimal solution:  Objective =  1.1000000000e+01
-Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
-Deterministic time = 0.01 ticks  (3.58 ticks/sec)
-
-
-Incumbent solution
-Variable Name           Solution Value
-z1                            1.000000
-z2                            1.000000
-z3                            1.000000
-z4                            1.000000
-z5                            1.000000
-z6                            1.000000
-z7                            1.000000
-z8                            1.000000
-z9                            1.000000
-z10                           1.000000
-z11                           1.000000
-x1                            1.000000
-x2                            1.000000
-x3                            1.000000
-x5                            1.000000
-x7                            1.000000
-x4                            1.000000
-x6                            1.000000
-x8                            1.000000
-x9                            1.000000
-x12                           1.000000
-x10                           1.000000
-x11                           1.000000
-x13                           1.000000
-x14                           1.000000
-
-Log started (V22.1.1.0) Sat Apr 20 03:38:27 2024
-
-Warning, line 17: Characters after RHS value are ignored.
-Warning, line 18: Characters after RHS value are ignored.
-Warning, line 19: Characters after RHS value are ignored.
-Warning, line 20: Characters after RHS value are ignored.
-Warning, line 21: Characters after RHS value are ignored.
-Warning, line 22: Characters after RHS value are ignored.
-Warning, line 23: Characters after RHS value are ignored.
-Warning, line 24: Characters after RHS value are ignored.
-Warning, line 25: Characters after RHS value are ignored.
-Warning, line 26: Characters after RHS value are ignored.
-Warning, line 27: Characters after RHS value are ignored.
 
 Problem 'data/test.lp' read.
 Read time = 0.00 sec. (0.00 ticks)
@@ -352,3 +120,2692 @@ x10                           1.000000
 x11                           1.000000
 x13                           1.000000
 x14                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 03:55:30 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/test.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.38 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x5                            1.000000
+x7                            1.000000
+x4                            1.000000
+x6                            1.000000
+x8                            1.000000
+x9                            1.000000
+x12                           1.000000
+x10                           1.000000
+x11                           1.000000
+x13                           1.000000
+x14                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 03:55:51 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+Row 'cov1' repeats.
+Row 'cov5' repeats.
+
+Problem 'data/kek.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.31 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x5                            1.000000
+x7                            1.000000
+x4                            1.000000
+x6                            1.000000
+x8                            1.000000
+x9                            1.000000
+x12                           1.000000
+x10                           1.000000
+x11                           1.000000
+x13                           1.000000
+x14                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:22:46 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/kek.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.28 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x5                            1.000000
+x6                            1.000000
+x2                            1.000000
+x7                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x14                           1.000000
+x10                           1.000000
+x13                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:23:29 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/pep.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.37 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x5                            1.000000
+x6                            1.000000
+x2                            1.000000
+x7                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x13                           1.000000
+x10                           1.000000
+x14                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:25:25 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/pep.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.20 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x6                            1.000000
+x7                            1.000000
+x2                            1.000000
+x5                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x13                           1.000000
+x10                           1.000000
+x14                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:25:52 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (2.97 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x6                            1.000000
+x7                            1.000000
+x2                            1.000000
+x5                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x13                           1.000000
+x10                           1.000000
+x14                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:29:09 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.02 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x5                            1.000000
+x6                            1.000000
+x2                            1.000000
+x7                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x13                           1.000000
+x10                           1.000000
+x14                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:29:44 2024
+
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.04 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x5                            1.000000
+x6                            1.000000
+x2                            1.000000
+x7                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x13                           1.000000
+x10                           1.000000
+x14                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:32:12 2024
+
+Warning, line 12: Characters after RHS value are ignored.
+Warning, line 13: Characters after RHS value are ignored.
+Warning, line 14: Characters after RHS value are ignored.
+Warning, line 15: Characters after RHS value are ignored.
+Warning, line 16: Characters after RHS value are ignored.
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.29 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x6                            1.000000
+x7                            1.000000
+x2                            1.000000
+x5                            1.000000
+x3                            1.000000
+x4                            1.000000
+x8                            1.000000
+x12                           1.000000
+x9                            1.000000
+x13                           1.000000
+x10                           1.000000
+x14                           1.000000
+x11                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 04:35:04 2024
+
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 8 rows and 9 columns.
+MIP Presolve added 4 rows and 0 columns.
+MIP Presolve modified 20 coefficients.
+Aggregator did 15 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.01 sec. (0.05 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (0.05 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (0.05 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  4.0000000000e+00
+Solution time =    0.01 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.05 ticks  (3.92 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z4                            1.000000
+z5                            1.000000
+z7                            1.000000
+x1                            1.000000
+x7                            1.000000
+x4                            1.000000
+x8                            1.000000
+x9                            1.000000
+x14                           1.000000
+All other variables in the range 1-25 are 0.
+
+Log started (V22.1.1.0) Sat Apr 20 04:35:29 2024
+
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 8 rows and 9 columns.
+MIP Presolve added 4 rows and 0 columns.
+MIP Presolve modified 20 coefficients.
+Aggregator did 15 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.05 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  4.0000000000e+00
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.05 ticks  (11.16 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z4                            1.000000
+z5                            1.000000
+z7                            1.000000
+x1                            1.000000
+x7                            1.000000
+x4                            1.000000
+x8                            1.000000
+x9                            1.000000
+x14                           1.000000
+All other variables in the range 1-25 are 0.
+
+Log started (V22.1.1.0) Sat Apr 20 04:40:39 2024
+
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.01 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 69.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 113 rows and 119 columns.
+MIP Presolve modified 26 coefficients.
+Aggregator did 19 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.10 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.11 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.11 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  6.2000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.11 ticks  (26.35 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+z12                           1.000000
+z13                           1.000000
+z14                           1.000000
+z15                           1.000000
+z16                           1.000000
+z17                           1.000000
+z18                           1.000000
+z19                           1.000000
+z20                           1.000000
+z21                           1.000000
+z22                           1.000000
+z23                           1.000000
+z24                           1.000000
+z26                           1.000000
+z27                           1.000000
+z28                           1.000000
+z29                           1.000000
+z30                           1.000000
+z31                           1.000000
+z32                           1.000000
+z33                           1.000000
+z34                           1.000000
+z36                           1.000000
+z37                           1.000000
+z38                           1.000000
+z39                           1.000000
+z40                           1.000000
+z41                           1.000000
+z42                           1.000000
+z43                           1.000000
+z44                           1.000000
+z45                           1.000000
+z46                           1.000000
+z47                           1.000000
+z48                           1.000000
+z49                           1.000000
+z51                           1.000000
+z52                           1.000000
+z53                           1.000000
+z54                           1.000000
+z55                           1.000000
+z56                           1.000000
+z57                           1.000000
+z58                           1.000000
+z59                           1.000000
+z61                           1.000000
+z62                           1.000000
+z63                           1.000000
+z65                           1.000000
+z66                           1.000000
+z68                           1.000000
+z69                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x4                            1.000000
+x5                            1.000000
+x10                           1.000000
+x11                           1.000000
+x9                            1.000000
+x12                           1.000000
+x13                           1.000000
+x14                           1.000000
+x15                           1.000000
+x16                           1.000000
+x17                           1.000000
+x18                           1.000000
+x19                           1.000000
+x20                           1.000000
+x21                           1.000000
+x22                           1.000000
+x23                           1.000000
+x24                           1.000000
+x25                           1.000000
+x26                           1.000000
+x27                           1.000000
+x28                           1.000000
+x29                           1.000000
+x30                           1.000000
+x31                           1.000000
+x32                           1.000000
+x33                           1.000000
+x34                           1.000000
+x35                           1.000000
+x36                           1.000000
+x37                           1.000000
+x38                           1.000000
+x39                           1.000000
+x40                           1.000000
+x41                           1.000000
+x42                           1.000000
+x43                           1.000000
+x44                           1.000000
+x45                           1.000000
+x46                           1.000000
+x47                           1.000000
+x50                           1.000000
+x51                           1.000000
+x52                           1.000000
+x53                           1.000000
+x54                           1.000000
+x55                           1.000000
+x56                           1.000000
+x57                           1.000000
+x58                           1.000000
+x60                           1.000000
+x61                           1.000000
+x62                           1.000000
+x63                           1.000000
+x64                           1.000000
+x65                           1.000000
+x66                           1.000000
+x67                           1.000000
+x68                           1.000000
+All other variables in the range 1-138 are 0.
+
+Log started (V22.1.1.0) Sat Apr 20 04:41:54 2024
+
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.05 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 311.000000 after 0.00 sec. (0.03 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 529 rows and 552 columns.
+MIP Presolve modified 96 coefficients.
+Aggregator did 70 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.47 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.53 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.53 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  2.8600000000e+02
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.53 ticks  (113.11 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+z12                           1.000000
+z13                           1.000000
+z15                           1.000000
+z16                           1.000000
+z17                           1.000000
+z18                           1.000000
+z20                           1.000000
+z21                           1.000000
+z22                           1.000000
+z23                           1.000000
+z24                           1.000000
+z25                           1.000000
+z26                           1.000000
+z27                           1.000000
+z28                           1.000000
+z30                           1.000000
+z31                           1.000000
+z32                           1.000000
+z33                           1.000000
+z34                           1.000000
+z36                           1.000000
+z37                           1.000000
+z38                           1.000000
+z39                           1.000000
+z40                           1.000000
+z41                           1.000000
+z42                           1.000000
+z43                           1.000000
+z44                           1.000000
+z45                           1.000000
+z46                           1.000000
+z47                           1.000000
+z48                           1.000000
+z49                           1.000000
+z50                           1.000000
+z52                           1.000000
+z53                           1.000000
+z54                           1.000000
+z55                           1.000000
+z56                           1.000000
+z58                           1.000000
+z59                           1.000000
+z61                           1.000000
+z62                           1.000000
+z63                           1.000000
+z64                           1.000000
+z65                           1.000000
+z66                           1.000000
+z67                           1.000000
+z68                           1.000000
+z69                           1.000000
+z70                           1.000000
+z71                           1.000000
+z72                           1.000000
+z73                           1.000000
+z74                           1.000000
+z75                           1.000000
+z76                           1.000000
+z77                           1.000000
+z78                           1.000000
+z79                           1.000000
+z80                           1.000000
+z81                           1.000000
+z82                           1.000000
+z83                           1.000000
+z84                           1.000000
+z85                           1.000000
+z86                           1.000000
+z87                           1.000000
+z88                           1.000000
+z89                           1.000000
+z90                           1.000000
+z92                           1.000000
+z93                           1.000000
+z95                           1.000000
+z96                           1.000000
+z97                           1.000000
+z99                           1.000000
+z100                          1.000000
+z101                          1.000000
+z102                          1.000000
+z103                          1.000000
+z104                          1.000000
+z105                          1.000000
+z106                          1.000000
+z107                          1.000000
+z108                          1.000000
+z109                          1.000000
+z110                          1.000000
+z112                          1.000000
+z113                          1.000000
+z114                          1.000000
+z115                          1.000000
+z116                          1.000000
+z117                          1.000000
+z118                          1.000000
+z119                          1.000000
+z120                          1.000000
+z121                          1.000000
+z122                          1.000000
+z123                          1.000000
+z124                          1.000000
+z125                          1.000000
+z126                          1.000000
+z127                          1.000000
+z128                          1.000000
+z129                          1.000000
+z130                          1.000000
+z131                          1.000000
+z132                          1.000000
+z133                          1.000000
+z134                          1.000000
+z135                          1.000000
+z136                          1.000000
+z137                          1.000000
+z138                          1.000000
+z139                          1.000000
+z141                          1.000000
+z142                          1.000000
+z143                          1.000000
+z144                          1.000000
+z145                          1.000000
+z146                          1.000000
+z147                          1.000000
+z148                          1.000000
+z149                          1.000000
+z150                          1.000000
+z152                          1.000000
+z153                          1.000000
+z154                          1.000000
+z155                          1.000000
+z156                          1.000000
+z157                          1.000000
+z158                          1.000000
+z159                          1.000000
+z160                          1.000000
+z161                          1.000000
+z162                          1.000000
+z163                          1.000000
+z164                          1.000000
+z165                          1.000000
+z166                          1.000000
+z168                          1.000000
+z169                          1.000000
+z170                          1.000000
+z171                          1.000000
+z172                          1.000000
+z173                          1.000000
+z174                          1.000000
+z175                          1.000000
+z176                          1.000000
+z178                          1.000000
+z179                          1.000000
+z180                          1.000000
+z181                          1.000000
+z182                          1.000000
+z183                          1.000000
+z184                          1.000000
+z186                          1.000000
+z187                          1.000000
+z188                          1.000000
+z189                          1.000000
+z190                          1.000000
+z191                          1.000000
+z192                          1.000000
+z193                          1.000000
+z194                          1.000000
+z195                          1.000000
+z196                          1.000000
+z197                          1.000000
+z198                          1.000000
+z199                          1.000000
+z200                          1.000000
+z201                          1.000000
+z202                          1.000000
+z203                          1.000000
+z204                          1.000000
+z205                          1.000000
+z206                          1.000000
+z207                          1.000000
+z208                          1.000000
+z209                          1.000000
+z211                          1.000000
+z212                          1.000000
+z213                          1.000000
+z214                          1.000000
+z215                          1.000000
+z216                          1.000000
+z219                          1.000000
+z220                          1.000000
+z221                          1.000000
+z222                          1.000000
+z223                          1.000000
+z224                          1.000000
+z225                          1.000000
+z226                          1.000000
+z227                          1.000000
+z228                          1.000000
+z229                          1.000000
+z230                          1.000000
+z231                          1.000000
+z232                          1.000000
+z233                          1.000000
+z234                          1.000000
+z235                          1.000000
+z236                          1.000000
+z238                          1.000000
+z239                          1.000000
+z240                          1.000000
+z241                          1.000000
+z242                          1.000000
+z243                          1.000000
+z244                          1.000000
+z245                          1.000000
+z246                          1.000000
+z247                          1.000000
+z248                          1.000000
+z249                          1.000000
+z250                          1.000000
+z251                          1.000000
+z252                          1.000000
+z253                          1.000000
+z254                          1.000000
+z255                          1.000000
+z256                          1.000000
+z257                          1.000000
+z258                          1.000000
+z259                          1.000000
+z260                          1.000000
+z261                          1.000000
+z262                          1.000000
+z263                          1.000000
+z264                          1.000000
+z265                          1.000000
+z266                          1.000000
+z268                          1.000000
+z269                          1.000000
+z270                          1.000000
+z271                          1.000000
+z272                          1.000000
+z273                          1.000000
+z274                          1.000000
+z275                          1.000000
+z276                          1.000000
+z277                          1.000000
+z278                          1.000000
+z279                          1.000000
+z280                          1.000000
+z281                          1.000000
+z282                          1.000000
+z283                          1.000000
+z284                          1.000000
+z285                          1.000000
+z286                          1.000000
+z287                          1.000000
+z288                          1.000000
+z289                          1.000000
+z290                          1.000000
+z291                          1.000000
+z292                          1.000000
+z293                          1.000000
+z294                          1.000000
+z295                          1.000000
+z296                          1.000000
+z297                          1.000000
+z298                          1.000000
+z299                          1.000000
+z300                          1.000000
+z302                          1.000000
+z303                          1.000000
+z304                          1.000000
+z305                          1.000000
+z306                          1.000000
+z307                          1.000000
+z310                          1.000000
+z311                          1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x4                            1.000000
+x5                            1.000000
+x10                           1.000000
+x11                           1.000000
+x9                            1.000000
+x12                           1.000000
+x13                           1.000000
+x14                           1.000000
+x15                           1.000000
+x16                           1.000000
+x17                           1.000000
+x18                           1.000000
+x19                           1.000000
+x20                           1.000000
+x21                           1.000000
+x22                           1.000000
+x23                           1.000000
+x24                           1.000000
+x25                           1.000000
+x26                           1.000000
+x27                           1.000000
+x28                           1.000000
+x29                           1.000000
+x30                           1.000000
+x31                           1.000000
+x32                           1.000000
+x33                           1.000000
+x34                           1.000000
+x35                           1.000000
+x36                           1.000000
+x37                           1.000000
+x38                           1.000000
+x39                           1.000000
+x40                           1.000000
+x41                           1.000000
+x42                           1.000000
+x43                           1.000000
+x44                           1.000000
+x45                           1.000000
+x46                           1.000000
+x47                           1.000000
+x50                           1.000000
+x51                           1.000000
+x52                           1.000000
+x53                           1.000000
+x54                           1.000000
+x55                           1.000000
+x56                           1.000000
+x57                           1.000000
+x58                           1.000000
+x60                           1.000000
+x61                           1.000000
+x62                           1.000000
+x63                           1.000000
+x64                           1.000000
+x65                           1.000000
+x66                           1.000000
+x67                           1.000000
+x68                           1.000000
+x70                           1.000000
+x71                           1.000000
+x72                           1.000000
+x73                           1.000000
+x74                           1.000000
+x75                           1.000000
+x76                           1.000000
+x77                           1.000000
+x78                           1.000000
+x79                           1.000000
+x80                           1.000000
+x81                           1.000000
+x82                           1.000000
+x83                           1.000000
+x84                           1.000000
+x87                           1.000000
+x88                           1.000000
+x89                           1.000000
+x90                           1.000000
+x91                           1.000000
+x92                           1.000000
+x93                           1.000000
+x94                           1.000000
+x95                           1.000000
+x96                           1.000000
+x97                           1.000000
+x98                           1.000000
+x99                           1.000000
+x100                          1.000000
+x101                          1.000000
+x104                          1.000000
+x105                          1.000000
+x106                          1.000000
+x107                          1.000000
+x108                          1.000000
+x109                          1.000000
+x110                          1.000000
+x111                          1.000000
+x112                          1.000000
+x113                          1.000000
+x114                          1.000000
+x115                          1.000000
+x116                          1.000000
+x117                          1.000000
+x118                          1.000000
+x121                          1.000000
+x122                          1.000000
+x123                          1.000000
+x124                          1.000000
+x125                          1.000000
+x126                          1.000000
+x127                          1.000000
+x128                          1.000000
+x129                          1.000000
+x130                          1.000000
+x131                          1.000000
+x132                          1.000000
+x133                          1.000000
+x134                          1.000000
+x135                          1.000000
+x137                          1.000000
+x138                          1.000000
+x139                          1.000000
+x140                          1.000000
+x141                          1.000000
+x142                          1.000000
+x143                          1.000000
+x144                          1.000000
+x145                          1.000000
+x146                          1.000000
+x147                          1.000000
+x148                          1.000000
+x149                          1.000000
+x150                          1.000000
+x151                          1.000000
+x153                          1.000000
+x154                          1.000000
+x155                          1.000000
+x156                          1.000000
+x157                          1.000000
+x158                          1.000000
+x159                          1.000000
+x160                          1.000000
+x161                          1.000000
+x162                          1.000000
+x163                          1.000000
+x164                          1.000000
+x165                          1.000000
+x166                          1.000000
+x167                          1.000000
+x169                          1.000000
+x170                          1.000000
+x171                          1.000000
+x172                          1.000000
+x173                          1.000000
+x174                          1.000000
+x175                          1.000000
+x176                          1.000000
+x177                          1.000000
+x178                          1.000000
+x179                          1.000000
+x180                          1.000000
+x181                          1.000000
+x182                          1.000000
+x183                          1.000000
+x185                          1.000000
+x186                          1.000000
+x187                          1.000000
+x188                          1.000000
+x189                          1.000000
+x190                          1.000000
+x191                          1.000000
+x192                          1.000000
+x193                          1.000000
+x194                          1.000000
+x195                          1.000000
+x196                          1.000000
+x197                          1.000000
+x198                          1.000000
+x199                          1.000000
+x201                          1.000000
+x202                          1.000000
+x203                          1.000000
+x204                          1.000000
+x205                          1.000000
+x206                          1.000000
+x207                          1.000000
+x208                          1.000000
+x209                          1.000000
+x210                          1.000000
+x211                          1.000000
+x212                          1.000000
+x213                          1.000000
+x214                          1.000000
+x215                          1.000000
+x217                          1.000000
+x218                          1.000000
+x219                          1.000000
+x220                          1.000000
+x221                          1.000000
+x222                          1.000000
+x223                          1.000000
+x224                          1.000000
+x225                          1.000000
+x226                          1.000000
+x227                          1.000000
+x228                          1.000000
+x229                          1.000000
+x230                          1.000000
+x231                          1.000000
+x233                          1.000000
+x234                          1.000000
+x235                          1.000000
+x236                          1.000000
+x237                          1.000000
+x238                          1.000000
+x239                          1.000000
+x240                          1.000000
+x241                          1.000000
+x242                          1.000000
+x243                          1.000000
+x244                          1.000000
+x245                          1.000000
+x246                          1.000000
+x247                          1.000000
+x249                          1.000000
+x250                          1.000000
+x251                          1.000000
+x252                          1.000000
+x253                          1.000000
+x254                          1.000000
+x255                          1.000000
+x256                          1.000000
+x257                          1.000000
+x258                          1.000000
+x259                          1.000000
+x260                          1.000000
+x261                          1.000000
+x262                          1.000000
+x263                          1.000000
+x265                          1.000000
+x266                          1.000000
+x267                          1.000000
+x268                          1.000000
+x269                          1.000000
+x270                          1.000000
+x271                          1.000000
+x272                          1.000000
+x273                          1.000000
+x274                          1.000000
+x275                          1.000000
+x276                          1.000000
+x277                          1.000000
+x278                          1.000000
+x279                          1.000000
+x281                          1.000000
+x282                          1.000000
+x283                          1.000000
+x284                          1.000000
+x285                          1.000000
+x286                          1.000000
+x287                          1.000000
+x288                          1.000000
+x289                          1.000000
+x290                          1.000000
+x291                          1.000000
+x292                          1.000000
+x293                          1.000000
+x294                          1.000000
+x295                          1.000000
+x297                          1.000000
+x298                          1.000000
+x299                          1.000000
+x300                          1.000000
+x301                          1.000000
+x302                          1.000000
+x303                          1.000000
+x304                          1.000000
+x305                          1.000000
+x306                          1.000000
+x307                          1.000000
+x308                          1.000000
+x309                          1.000000
+x310                          1.000000
+x311                          1.000000
+All other variables in the range 1-623 are 0.
+
+Log started (V22.1.1.0) Sat Apr 20 04:44:12 2024
+
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.05 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 311.000000 after 0.00 sec. (0.03 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 529 rows and 552 columns.
+MIP Presolve modified 96 coefficients.
+Aggregator did 70 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.47 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.53 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.53 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  2.8600000000e+02
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.53 ticks  (113.33 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+z13                           1.000000
+z14                           1.000000
+z15                           1.000000
+z16                           1.000000
+z17                           1.000000
+z18                           1.000000
+z19                           1.000000
+z20                           1.000000
+z21                           1.000000
+z22                           1.000000
+z23                           1.000000
+z24                           1.000000
+z25                           1.000000
+z26                           1.000000
+z27                           1.000000
+z28                           1.000000
+z29                           1.000000
+z30                           1.000000
+z31                           1.000000
+z32                           1.000000
+z33                           1.000000
+z35                           1.000000
+z37                           1.000000
+z38                           1.000000
+z39                           1.000000
+z40                           1.000000
+z42                           1.000000
+z43                           1.000000
+z44                           1.000000
+z45                           1.000000
+z46                           1.000000
+z47                           1.000000
+z48                           1.000000
+z49                           1.000000
+z50                           1.000000
+z51                           1.000000
+z52                           1.000000
+z53                           1.000000
+z55                           1.000000
+z56                           1.000000
+z57                           1.000000
+z58                           1.000000
+z59                           1.000000
+z60                           1.000000
+z61                           1.000000
+z62                           1.000000
+z63                           1.000000
+z64                           1.000000
+z65                           1.000000
+z66                           1.000000
+z69                           1.000000
+z70                           1.000000
+z71                           1.000000
+z72                           1.000000
+z73                           1.000000
+z75                           1.000000
+z76                           1.000000
+z77                           1.000000
+z78                           1.000000
+z79                           1.000000
+z80                           1.000000
+z81                           1.000000
+z82                           1.000000
+z83                           1.000000
+z84                           1.000000
+z85                           1.000000
+z86                           1.000000
+z87                           1.000000
+z88                           1.000000
+z89                           1.000000
+z90                           1.000000
+z91                           1.000000
+z92                           1.000000
+z94                           1.000000
+z95                           1.000000
+z96                           1.000000
+z97                           1.000000
+z98                           1.000000
+z99                           1.000000
+z100                          1.000000
+z101                          1.000000
+z102                          1.000000
+z105                          1.000000
+z106                          1.000000
+z107                          1.000000
+z108                          1.000000
+z109                          1.000000
+z110                          1.000000
+z111                          1.000000
+z112                          1.000000
+z113                          1.000000
+z114                          1.000000
+z115                          1.000000
+z116                          1.000000
+z117                          1.000000
+z118                          1.000000
+z119                          1.000000
+z120                          1.000000
+z121                          1.000000
+z122                          1.000000
+z123                          1.000000
+z124                          1.000000
+z125                          1.000000
+z126                          1.000000
+z127                          1.000000
+z128                          1.000000
+z129                          1.000000
+z130                          1.000000
+z131                          1.000000
+z132                          1.000000
+z133                          1.000000
+z134                          1.000000
+z136                          1.000000
+z137                          1.000000
+z138                          1.000000
+z139                          1.000000
+z140                          1.000000
+z141                          1.000000
+z142                          1.000000
+z144                          1.000000
+z145                          1.000000
+z146                          1.000000
+z147                          1.000000
+z148                          1.000000
+z149                          1.000000
+z150                          1.000000
+z151                          1.000000
+z153                          1.000000
+z154                          1.000000
+z155                          1.000000
+z156                          1.000000
+z157                          1.000000
+z158                          1.000000
+z159                          1.000000
+z160                          1.000000
+z161                          1.000000
+z162                          1.000000
+z164                          1.000000
+z165                          1.000000
+z166                          1.000000
+z167                          1.000000
+z168                          1.000000
+z169                          1.000000
+z171                          1.000000
+z172                          1.000000
+z173                          1.000000
+z174                          1.000000
+z175                          1.000000
+z176                          1.000000
+z177                          1.000000
+z178                          1.000000
+z179                          1.000000
+z181                          1.000000
+z182                          1.000000
+z183                          1.000000
+z184                          1.000000
+z185                          1.000000
+z186                          1.000000
+z187                          1.000000
+z188                          1.000000
+z189                          1.000000
+z190                          1.000000
+z191                          1.000000
+z193                          1.000000
+z194                          1.000000
+z195                          1.000000
+z196                          1.000000
+z197                          1.000000
+z198                          1.000000
+z199                          1.000000
+z200                          1.000000
+z201                          1.000000
+z202                          1.000000
+z203                          1.000000
+z204                          1.000000
+z205                          1.000000
+z206                          1.000000
+z207                          1.000000
+z208                          1.000000
+z210                          1.000000
+z211                          1.000000
+z212                          1.000000
+z213                          1.000000
+z214                          1.000000
+z216                          1.000000
+z217                          1.000000
+z218                          1.000000
+z219                          1.000000
+z220                          1.000000
+z221                          1.000000
+z222                          1.000000
+z223                          1.000000
+z224                          1.000000
+z225                          1.000000
+z226                          1.000000
+z227                          1.000000
+z229                          1.000000
+z230                          1.000000
+z231                          1.000000
+z232                          1.000000
+z233                          1.000000
+z234                          1.000000
+z235                          1.000000
+z237                          1.000000
+z238                          1.000000
+z240                          1.000000
+z241                          1.000000
+z242                          1.000000
+z243                          1.000000
+z244                          1.000000
+z246                          1.000000
+z247                          1.000000
+z248                          1.000000
+z249                          1.000000
+z250                          1.000000
+z251                          1.000000
+z252                          1.000000
+z253                          1.000000
+z254                          1.000000
+z255                          1.000000
+z256                          1.000000
+z257                          1.000000
+z258                          1.000000
+z259                          1.000000
+z260                          1.000000
+z261                          1.000000
+z262                          1.000000
+z263                          1.000000
+z264                          1.000000
+z265                          1.000000
+z266                          1.000000
+z267                          1.000000
+z268                          1.000000
+z269                          1.000000
+z270                          1.000000
+z271                          1.000000
+z272                          1.000000
+z273                          1.000000
+z274                          1.000000
+z275                          1.000000
+z276                          1.000000
+z277                          1.000000
+z278                          1.000000
+z279                          1.000000
+z280                          1.000000
+z281                          1.000000
+z282                          1.000000
+z283                          1.000000
+z284                          1.000000
+z285                          1.000000
+z286                          1.000000
+z287                          1.000000
+z288                          1.000000
+z289                          1.000000
+z290                          1.000000
+z291                          1.000000
+z292                          1.000000
+z293                          1.000000
+z295                          1.000000
+z296                          1.000000
+z297                          1.000000
+z298                          1.000000
+z299                          1.000000
+z300                          1.000000
+z301                          1.000000
+z302                          1.000000
+z303                          1.000000
+z304                          1.000000
+z305                          1.000000
+z306                          1.000000
+z307                          1.000000
+z308                          1.000000
+z309                          1.000000
+z310                          1.000000
+z311                          1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x4                            1.000000
+x5                            1.000000
+x10                           1.000000
+x11                           1.000000
+x9                            1.000000
+x12                           1.000000
+x13                           1.000000
+x14                           1.000000
+x15                           1.000000
+x16                           1.000000
+x17                           1.000000
+x18                           1.000000
+x19                           1.000000
+x20                           1.000000
+x21                           1.000000
+x22                           1.000000
+x23                           1.000000
+x24                           1.000000
+x25                           1.000000
+x26                           1.000000
+x27                           1.000000
+x28                           1.000000
+x29                           1.000000
+x30                           1.000000
+x31                           1.000000
+x32                           1.000000
+x33                           1.000000
+x34                           1.000000
+x35                           1.000000
+x36                           1.000000
+x37                           1.000000
+x38                           1.000000
+x39                           1.000000
+x40                           1.000000
+x41                           1.000000
+x42                           1.000000
+x43                           1.000000
+x44                           1.000000
+x45                           1.000000
+x46                           1.000000
+x47                           1.000000
+x50                           1.000000
+x51                           1.000000
+x52                           1.000000
+x53                           1.000000
+x54                           1.000000
+x55                           1.000000
+x56                           1.000000
+x57                           1.000000
+x58                           1.000000
+x60                           1.000000
+x61                           1.000000
+x62                           1.000000
+x63                           1.000000
+x64                           1.000000
+x65                           1.000000
+x66                           1.000000
+x67                           1.000000
+x68                           1.000000
+x70                           1.000000
+x71                           1.000000
+x72                           1.000000
+x73                           1.000000
+x74                           1.000000
+x75                           1.000000
+x76                           1.000000
+x77                           1.000000
+x78                           1.000000
+x79                           1.000000
+x80                           1.000000
+x81                           1.000000
+x82                           1.000000
+x83                           1.000000
+x84                           1.000000
+x87                           1.000000
+x88                           1.000000
+x89                           1.000000
+x90                           1.000000
+x91                           1.000000
+x92                           1.000000
+x93                           1.000000
+x94                           1.000000
+x95                           1.000000
+x96                           1.000000
+x97                           1.000000
+x98                           1.000000
+x99                           1.000000
+x100                          1.000000
+x101                          1.000000
+x104                          1.000000
+x105                          1.000000
+x106                          1.000000
+x107                          1.000000
+x108                          1.000000
+x109                          1.000000
+x110                          1.000000
+x111                          1.000000
+x112                          1.000000
+x113                          1.000000
+x114                          1.000000
+x115                          1.000000
+x116                          1.000000
+x117                          1.000000
+x118                          1.000000
+x121                          1.000000
+x122                          1.000000
+x123                          1.000000
+x124                          1.000000
+x125                          1.000000
+x126                          1.000000
+x127                          1.000000
+x128                          1.000000
+x129                          1.000000
+x130                          1.000000
+x131                          1.000000
+x132                          1.000000
+x133                          1.000000
+x134                          1.000000
+x135                          1.000000
+x137                          1.000000
+x138                          1.000000
+x139                          1.000000
+x140                          1.000000
+x141                          1.000000
+x142                          1.000000
+x143                          1.000000
+x144                          1.000000
+x145                          1.000000
+x146                          1.000000
+x147                          1.000000
+x148                          1.000000
+x149                          1.000000
+x150                          1.000000
+x151                          1.000000
+x153                          1.000000
+x154                          1.000000
+x155                          1.000000
+x156                          1.000000
+x157                          1.000000
+x158                          1.000000
+x159                          1.000000
+x160                          1.000000
+x161                          1.000000
+x162                          1.000000
+x163                          1.000000
+x164                          1.000000
+x165                          1.000000
+x166                          1.000000
+x167                          1.000000
+x169                          1.000000
+x170                          1.000000
+x171                          1.000000
+x172                          1.000000
+x173                          1.000000
+x174                          1.000000
+x175                          1.000000
+x176                          1.000000
+x177                          1.000000
+x178                          1.000000
+x179                          1.000000
+x180                          1.000000
+x181                          1.000000
+x182                          1.000000
+x183                          1.000000
+x185                          1.000000
+x186                          1.000000
+x187                          1.000000
+x188                          1.000000
+x189                          1.000000
+x190                          1.000000
+x191                          1.000000
+x192                          1.000000
+x193                          1.000000
+x194                          1.000000
+x195                          1.000000
+x196                          1.000000
+x197                          1.000000
+x198                          1.000000
+x199                          1.000000
+x201                          1.000000
+x202                          1.000000
+x203                          1.000000
+x204                          1.000000
+x205                          1.000000
+x206                          1.000000
+x207                          1.000000
+x208                          1.000000
+x209                          1.000000
+x210                          1.000000
+x211                          1.000000
+x212                          1.000000
+x213                          1.000000
+x214                          1.000000
+x215                          1.000000
+x217                          1.000000
+x218                          1.000000
+x219                          1.000000
+x220                          1.000000
+x221                          1.000000
+x222                          1.000000
+x223                          1.000000
+x224                          1.000000
+x225                          1.000000
+x226                          1.000000
+x227                          1.000000
+x228                          1.000000
+x229                          1.000000
+x230                          1.000000
+x231                          1.000000
+x233                          1.000000
+x234                          1.000000
+x235                          1.000000
+x236                          1.000000
+x237                          1.000000
+x238                          1.000000
+x239                          1.000000
+x240                          1.000000
+x241                          1.000000
+x242                          1.000000
+x243                          1.000000
+x244                          1.000000
+x245                          1.000000
+x246                          1.000000
+x247                          1.000000
+x249                          1.000000
+x250                          1.000000
+x251                          1.000000
+x252                          1.000000
+x253                          1.000000
+x254                          1.000000
+x255                          1.000000
+x256                          1.000000
+x257                          1.000000
+x258                          1.000000
+x259                          1.000000
+x260                          1.000000
+x261                          1.000000
+x262                          1.000000
+x263                          1.000000
+x265                          1.000000
+x266                          1.000000
+x267                          1.000000
+x268                          1.000000
+x269                          1.000000
+x270                          1.000000
+x271                          1.000000
+x272                          1.000000
+x273                          1.000000
+x274                          1.000000
+x275                          1.000000
+x276                          1.000000
+x277                          1.000000
+x278                          1.000000
+x279                          1.000000
+x281                          1.000000
+x282                          1.000000
+x283                          1.000000
+x284                          1.000000
+x285                          1.000000
+x286                          1.000000
+x287                          1.000000
+x288                          1.000000
+x289                          1.000000
+x290                          1.000000
+x291                          1.000000
+x292                          1.000000
+x293                          1.000000
+x294                          1.000000
+x295                          1.000000
+x297                          1.000000
+x298                          1.000000
+x299                          1.000000
+x300                          1.000000
+x301                          1.000000
+x302                          1.000000
+x303                          1.000000
+x304                          1.000000
+x305                          1.000000
+x306                          1.000000
+x307                          1.000000
+x308                          1.000000
+x309                          1.000000
+x310                          1.000000
+x311                          1.000000
+All other variables in the range 1-623 are 0.
+
+Log started (V22.1.1.0) Sat Apr 20 04:45:01 2024
+
+
+Problem 'data/lolz.lp' read.
+Read time = 0.00 sec. (0.05 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 317.000000 after 0.00 sec. (0.03 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 541 rows and 565 columns.
+MIP Presolve added 6 rows and 2 columns.
+MIP Presolve modified 111 coefficients.
+Aggregator did 82 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.65 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.71 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.71 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  2.8800000000e+02
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.71 ticks  (149.03 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+z12                           1.000000
+z13                           1.000000
+z14                           1.000000
+z15                           1.000000
+z16                           1.000000
+z17                           1.000000
+z18                           1.000000
+z19                           1.000000
+z20                           1.000000
+z21                           1.000000
+z22                           1.000000
+z23                           1.000000
+z24                           1.000000
+z25                           1.000000
+z26                           1.000000
+z27                           1.000000
+z28                           1.000000
+z30                           1.000000
+z31                           1.000000
+z32                           1.000000
+z34                           1.000000
+z36                           1.000000
+z37                           1.000000
+z38                           1.000000
+z39                           1.000000
+z40                           1.000000
+z41                           1.000000
+z42                           1.000000
+z43                           1.000000
+z44                           1.000000
+z45                           1.000000
+z46                           1.000000
+z47                           1.000000
+z48                           1.000000
+z49                           1.000000
+z50                           1.000000
+z51                           1.000000
+z52                           1.000000
+z53                           1.000000
+z54                           1.000000
+z55                           1.000000
+z56                           1.000000
+z57                           1.000000
+z58                           1.000000
+z59                           1.000000
+z60                           1.000000
+z61                           1.000000
+z62                           1.000000
+z63                           1.000000
+z64                           1.000000
+z65                           1.000000
+z66                           1.000000
+z67                           1.000000
+z68                           1.000000
+z69                           1.000000
+z70                           1.000000
+z71                           1.000000
+z72                           1.000000
+z73                           1.000000
+z74                           1.000000
+z75                           1.000000
+z76                           1.000000
+z77                           1.000000
+z78                           1.000000
+z79                           1.000000
+z81                           1.000000
+z82                           1.000000
+z83                           1.000000
+z84                           1.000000
+z85                           1.000000
+z86                           1.000000
+z87                           1.000000
+z88                           1.000000
+z90                           1.000000
+z91                           1.000000
+z92                           1.000000
+z93                           1.000000
+z94                           1.000000
+z95                           1.000000
+z96                           1.000000
+z97                           1.000000
+z98                           1.000000
+z99                           1.000000
+z100                          1.000000
+z101                          1.000000
+z102                          1.000000
+z103                          1.000000
+z104                          1.000000
+z106                          1.000000
+z107                          1.000000
+z108                          1.000000
+z109                          1.000000
+z110                          1.000000
+z111                          1.000000
+z112                          1.000000
+z113                          1.000000
+z114                          1.000000
+z115                          1.000000
+z116                          1.000000
+z117                          1.000000
+z118                          1.000000
+z119                          1.000000
+z120                          1.000000
+z121                          1.000000
+z122                          1.000000
+z123                          1.000000
+z124                          1.000000
+z125                          1.000000
+z126                          1.000000
+z127                          1.000000
+z128                          1.000000
+z129                          1.000000
+z130                          1.000000
+z131                          1.000000
+z133                          1.000000
+z134                          1.000000
+z135                          1.000000
+z136                          1.000000
+z137                          1.000000
+z138                          1.000000
+z139                          1.000000
+z140                          1.000000
+z141                          1.000000
+z142                          1.000000
+z143                          1.000000
+z144                          1.000000
+z145                          1.000000
+z146                          1.000000
+z147                          1.000000
+z148                          1.000000
+z150                          1.000000
+z151                          1.000000
+z152                          1.000000
+z153                          1.000000
+z155                          1.000000
+z157                          1.000000
+z158                          1.000000
+z159                          1.000000
+z160                          1.000000
+z161                          1.000000
+z162                          1.000000
+z163                          1.000000
+z164                          1.000000
+z166                          1.000000
+z167                          1.000000
+z168                          1.000000
+z169                          1.000000
+z170                          1.000000
+z171                          1.000000
+z172                          1.000000
+z173                          1.000000
+z174                          1.000000
+z175                          1.000000
+z176                          1.000000
+z178                          1.000000
+z179                          1.000000
+z180                          1.000000
+z181                          1.000000
+z182                          1.000000
+z183                          1.000000
+z184                          1.000000
+z185                          1.000000
+z186                          1.000000
+z187                          1.000000
+z188                          1.000000
+z189                          1.000000
+z190                          1.000000
+z192                          1.000000
+z193                          1.000000
+z195                          1.000000
+z196                          1.000000
+z197                          1.000000
+z198                          1.000000
+z199                          1.000000
+z202                          1.000000
+z203                          1.000000
+z206                          1.000000
+z207                          1.000000
+z208                          1.000000
+z209                          1.000000
+z210                          1.000000
+z212                          1.000000
+z213                          1.000000
+z214                          1.000000
+z215                          1.000000
+z216                          1.000000
+z217                          1.000000
+z218                          1.000000
+z219                          1.000000
+z220                          1.000000
+z221                          1.000000
+z222                          1.000000
+z223                          1.000000
+z225                          1.000000
+z226                          1.000000
+z227                          1.000000
+z228                          1.000000
+z229                          1.000000
+z230                          1.000000
+z231                          1.000000
+z232                          1.000000
+z233                          1.000000
+z234                          1.000000
+z235                          1.000000
+z238                          1.000000
+z239                          1.000000
+z240                          1.000000
+z241                          1.000000
+z242                          1.000000
+z243                          1.000000
+z244                          1.000000
+z245                          1.000000
+z246                          1.000000
+z247                          1.000000
+z248                          1.000000
+z249                          1.000000
+z250                          1.000000
+z251                          1.000000
+z252                          1.000000
+z253                          1.000000
+z254                          1.000000
+z255                          1.000000
+z256                          1.000000
+z257                          1.000000
+z259                          1.000000
+z260                          1.000000
+z261                          1.000000
+z262                          1.000000
+z263                          1.000000
+z265                          1.000000
+z266                          1.000000
+z267                          1.000000
+z268                          1.000000
+z269                          1.000000
+z270                          1.000000
+z271                          1.000000
+z272                          1.000000
+z273                          1.000000
+z274                          1.000000
+z275                          1.000000
+z277                          1.000000
+z278                          1.000000
+z279                          1.000000
+z280                          1.000000
+z281                          1.000000
+z282                          1.000000
+z283                          1.000000
+z284                          1.000000
+z285                          1.000000
+z286                          1.000000
+z287                          1.000000
+z288                          1.000000
+z289                          1.000000
+z290                          1.000000
+z291                          1.000000
+z292                          1.000000
+z293                          1.000000
+z295                          1.000000
+z296                          1.000000
+z297                          1.000000
+z298                          1.000000
+z299                          1.000000
+z300                          1.000000
+z301                          1.000000
+z302                          1.000000
+z304                          1.000000
+z306                          1.000000
+z307                          1.000000
+z308                          1.000000
+z309                          1.000000
+z310                          1.000000
+z311                          1.000000
+z312                          1.000000
+z313                          1.000000
+z314                          1.000000
+z315                          1.000000
+z316                          1.000000
+z317                          1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x4                            1.000000
+x5                            1.000000
+x10                           1.000000
+x11                           1.000000
+x9                            1.000000
+x12                           1.000000
+x13                           1.000000
+x14                           1.000000
+x15                           1.000000
+x16                           1.000000
+x17                           1.000000
+x18                           1.000000
+x19                           1.000000
+x20                           1.000000
+x21                           1.000000
+x22                           1.000000
+x23                           1.000000
+x24                           1.000000
+x25                           1.000000
+x26                           1.000000
+x27                           1.000000
+x28                           1.000000
+x29                           1.000000
+x30                           1.000000
+x31                           1.000000
+x32                           1.000000
+x33                           1.000000
+x34                           1.000000
+x35                           1.000000
+x36                           1.000000
+x37                           1.000000
+x38                           1.000000
+x39                           1.000000
+x40                           1.000000
+x41                           1.000000
+x42                           1.000000
+x43                           1.000000
+x44                           1.000000
+x45                           1.000000
+x46                           1.000000
+x47                           1.000000
+x50                           1.000000
+x51                           1.000000
+x52                           1.000000
+x53                           1.000000
+x54                           1.000000
+x55                           1.000000
+x56                           1.000000
+x57                           1.000000
+x58                           1.000000
+x60                           1.000000
+x61                           1.000000
+x62                           1.000000
+x63                           1.000000
+x64                           1.000000
+x65                           1.000000
+x66                           1.000000
+x67                           1.000000
+x68                           1.000000
+x69                           1.000000
+x70                           1.000000
+x71                           1.000000
+x72                           1.000000
+x73                           1.000000
+x79                           1.000000
+x80                           1.000000
+x81                           1.000000
+x82                           1.000000
+x83                           1.000000
+x84                           1.000000
+x85                           1.000000
+x86                           1.000000
+x87                           1.000000
+x88                           1.000000
+x89                           1.000000
+x90                           1.000000
+x91                           1.000000
+x92                           1.000000
+x93                           1.000000
+x96                           1.000000
+x97                           1.000000
+x98                           1.000000
+x99                           1.000000
+x100                          1.000000
+x101                          1.000000
+x102                          1.000000
+x103                          1.000000
+x104                          1.000000
+x105                          1.000000
+x106                          1.000000
+x107                          1.000000
+x108                          1.000000
+x109                          1.000000
+x110                          1.000000
+x113                          1.000000
+x114                          1.000000
+x115                          1.000000
+x116                          1.000000
+x117                          1.000000
+x118                          1.000000
+x119                          1.000000
+x120                          1.000000
+x121                          1.000000
+x122                          1.000000
+x123                          1.000000
+x124                          1.000000
+x125                          1.000000
+x126                          1.000000
+x127                          1.000000
+x130                          1.000000
+x131                          1.000000
+x132                          1.000000
+x133                          1.000000
+x134                          1.000000
+x135                          1.000000
+x136                          1.000000
+x137                          1.000000
+x138                          1.000000
+x139                          1.000000
+x140                          1.000000
+x141                          1.000000
+x142                          1.000000
+x143                          1.000000
+x144                          1.000000
+x146                          1.000000
+x147                          1.000000
+x148                          1.000000
+x149                          1.000000
+x150                          1.000000
+x151                          1.000000
+x152                          1.000000
+x153                          1.000000
+x154                          1.000000
+x155                          1.000000
+x156                          1.000000
+x157                          1.000000
+x158                          1.000000
+x159                          1.000000
+x160                          1.000000
+x161                          1.000000
+x162                          1.000000
+x164                          1.000000
+x163                          1.000000
+x165                          1.000000
+x166                          1.000000
+x167                          1.000000
+x171                          1.000000
+x172                          1.000000
+x173                          1.000000
+x174                          1.000000
+x175                          1.000000
+x176                          1.000000
+x177                          1.000000
+x178                          1.000000
+x179                          1.000000
+x180                          1.000000
+x181                          1.000000
+x182                          1.000000
+x183                          1.000000
+x184                          1.000000
+x185                          1.000000
+x187                          1.000000
+x188                          1.000000
+x189                          1.000000
+x190                          1.000000
+x191                          1.000000
+x192                          1.000000
+x193                          1.000000
+x194                          1.000000
+x195                          1.000000
+x196                          1.000000
+x197                          1.000000
+x198                          1.000000
+x199                          1.000000
+x200                          1.000000
+x201                          1.000000
+x203                          1.000000
+x204                          1.000000
+x205                          1.000000
+x206                          1.000000
+x207                          1.000000
+x208                          1.000000
+x209                          1.000000
+x210                          1.000000
+x211                          1.000000
+x212                          1.000000
+x213                          1.000000
+x214                          1.000000
+x215                          1.000000
+x216                          1.000000
+x217                          1.000000
+x219                          1.000000
+x220                          1.000000
+x221                          1.000000
+x222                          1.000000
+x223                          1.000000
+x224                          1.000000
+x225                          1.000000
+x226                          1.000000
+x227                          1.000000
+x228                          1.000000
+x229                          1.000000
+x230                          1.000000
+x231                          1.000000
+x232                          1.000000
+x233                          1.000000
+x235                          1.000000
+x236                          1.000000
+x237                          1.000000
+x238                          1.000000
+x239                          1.000000
+x240                          1.000000
+x241                          1.000000
+x242                          1.000000
+x243                          1.000000
+x244                          1.000000
+x245                          1.000000
+x246                          1.000000
+x247                          1.000000
+x248                          1.000000
+x249                          1.000000
+x251                          1.000000
+x252                          1.000000
+x253                          1.000000
+x254                          1.000000
+x255                          1.000000
+x256                          1.000000
+x257                          1.000000
+x258                          1.000000
+x259                          1.000000
+x260                          1.000000
+x261                          1.000000
+x262                          1.000000
+x263                          1.000000
+x264                          1.000000
+x265                          1.000000
+x267                          1.000000
+x268                          1.000000
+x269                          1.000000
+x270                          1.000000
+x271                          1.000000
+x272                          1.000000
+x273                          1.000000
+x274                          1.000000
+x275                          1.000000
+x276                          1.000000
+x277                          1.000000
+x278                          1.000000
+x279                          1.000000
+x280                          1.000000
+x281                          1.000000
+x283                          1.000000
+x284                          1.000000
+x285                          1.000000
+x286                          1.000000
+x287                          1.000000
+x288                          1.000000
+x289                          1.000000
+x290                          1.000000
+x291                          1.000000
+x292                          1.000000
+x293                          1.000000
+x294                          1.000000
+x295                          1.000000
+x296                          1.000000
+x297                          1.000000
+x299                          1.000000
+x300                          1.000000
+x301                          1.000000
+x302                          1.000000
+x303                          1.000000
+x304                          1.000000
+x305                          1.000000
+x306                          1.000000
+x307                          1.000000
+x308                          1.000000
+x309                          1.000000
+x310                          1.000000
+x311                          1.000000
+x312                          1.000000
+x313                          1.000000
+x315                          1.000000
+x316                          1.000000
+x317                          1.000000
+x318                          1.000000
+x319                          1.000000
+x320                          1.000000
+x321                          1.000000
+x322                          1.000000
+x323                          1.000000
+x324                          1.000000
+x325                          1.000000
+x326                          1.000000
+x327                          1.000000
+x328                          1.000000
+x329                          1.000000
+All other variables in the range 1-647 are 0.

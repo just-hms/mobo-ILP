@@ -123,3 +123,51 @@ func TestString(t *testing.T) {
 		})
 	}
 }
+
+func TestCovers(t *testing.T) {
+	t.Parallel()
+	req := require.New(t)
+
+	testcases := []struct {
+		name string
+		a    *cube.Cube
+		one  uint
+		exp  bool
+	}{
+		{
+			name: "Simple",
+			a:    cube.FromString("0001"),
+			one:  1,
+			exp:  true,
+		},
+		{
+			name: "Strange",
+			a:    cube.FromString("0-0-"),
+			one:  1,
+			exp:  true,
+		},
+		{
+			name: "Strange with one",
+			a:    cube.FromString("0-01"),
+			one:  1,
+			exp:  true,
+		},
+		{
+			name: "Strange with one, seems broken",
+			a:    cube.FromString("-1"),
+			one:  1,
+			exp:  true,
+		},
+	}
+
+	for _, tt := range testcases {
+		tt := tt
+
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+			got := tt.a.Covers(tt.one)
+			req.Equal(tt.exp, got, tt.name)
+		})
+	}
+
+}
