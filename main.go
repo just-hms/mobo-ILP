@@ -8,17 +8,10 @@ import (
 
 func main() {
 	res, maps := opt.Formalize([]*opt.Output{
-		{
-			Ones:      []uint{2, 3, 7, 12, 15},
-			DontCares: []uint{4, 5, 13},
-		},
-		{
-			Ones:      []uint{4, 7, 9, 11, 15},
-			DontCares: []uint{6, 12, 14},
-		},
+		{Ones: []uint{1, 2, 3, 5}},
+		{Ones: []uint{1, 5, 6, 7}},
 	})
 
 	fmt.Println(res)
-	fmt.Println("-------------")
-	fmt.Println(maps)
+	fmt.Println("\\", maps)
 }

@@ -102,7 +102,15 @@ func (c *Cube) Equal(b *Cube) bool {
 }
 
 func (c *Cube) Covers(one uint) bool {
-	return c.minus.Test(one) || c.val.Test(one)
+	// get all ones not covered by -
+	diffC := c.val.SymmetricDifference(c.minus)
+
+	// get all ones not covered by -
+	m := New(one)
+	diffM := m.val.SymmetricDifference(c.minus)
+
+	// the remaing ones must be equal
+	return diffC.Equal(diffM)
 }
 
 func Merge(a, b *Cube) (*Cube, error) {

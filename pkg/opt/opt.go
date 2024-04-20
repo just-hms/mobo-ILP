@@ -20,6 +20,15 @@ type UniqueCube struct {
 	refs []*cube.Cube
 }
 
+const template = `Minimize
+{obj}
+Subject To
+{constraints}
+Binary
+{bounds}
+End
+`
+
 func uniqueCubes(cubes []*cube.Cube) []*UniqueCube {
 	uniqueCubes := map[string]*UniqueCube{}
 	for _, c := range cubes {
@@ -39,7 +48,7 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	constraints := []string{}
 	mapping := map[string]*cube.Cube{}
 	reverseMapping := map[*cube.Cube]string{}
-	iCount := 0
+	iCount := 1
 	// problem generation ----
 
 	for _, o := range outs {
@@ -65,8 +74,8 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 		})
 
 		// problem generation ----
-		covers := []string{}
 		for _, one := range o.Ones {
+			covers := []string{}
 			for i, c := range res {
 				if c.Covers(one) {
 					key := fmt.Sprintf("x%d", i+iCount)
@@ -76,10 +85,10 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 				}
 			}
 
-			constraints = append(constraints, strings.Join(covers, " + ")+" > 1")
+			constraints = append(constraints, strings.Join(covers, "+")+" > 1 "+fmt.Sprintf("\\ covers %d", one))
 		}
 		iCount += len(res)
-		constraints = append(constraints, "----\n")
+		constraints = append(constraints, "\n")
 		// problem generation ----
 
 		cubes = append(cubes, res...)
@@ -88,19 +97,23 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	uniqueCubes := uniqueCubes(cubes)
 
 	// problem generation ----
+	cost := []string{}
 	for i, c := range uniqueCubes {
-		key := fmt.Sprintf("x%d", i+iCount)
+		key := fmt.Sprintf("z%d", i+1)
 		mapping[key] = c.Cube
-		reverseMapping[c.Cube] = key
 
-		s := ""
+		refs := []string{}
 		for _, c := range c.refs {
-			s += reverseMapping[c] + fmt.Sprintf(" * %.5f", 1/float64(len(outs))+1)
+			refs = append(refs, fmt.Sprintf("%.5f ", 1/(float64(len(outs))+1))+reverseMapping[c])
 		}
 
-		constraints = append(constraints, fmt.Sprintf("%s > %s", key, s))
+		constraints = append(constraints, fmt.Sprintf("%s > %s", key, strings.Join(refs, "+")))
+		cost = append(cost, key)
 	}
-	// problem generation ----
 
-	return strings.Join(constraints, "\n"), mapping
+	// problem generation ----
+	template := strings.ReplaceAll(template, "{obj}", " obj: "+strings.Join(cost, "+"))
+	template = strings.ReplaceAll(template, "{constraints}", " "+strings.Join(constraints, "\n "))
+	template = strings.ReplaceAll(template, "{bounds}", " "+strings.Join(maps.Keys(mapping), "\n "))
+	return template, mapping
 }

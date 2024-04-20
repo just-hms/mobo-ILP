@@ -1,0 +1,354 @@
+
+Log started (V22.1.1.0) Sat Apr 20 03:32:16 2024
+
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+Warning, line 27: Characters after RHS value are ignored.
+Warning, line 28: Characters after RHS value are ignored.
+Warning, line 29: Characters after RHS value are ignored.
+Warning, line 30: Characters after RHS value are ignored.
+Warning, line 31: Characters after RHS value are ignored.
+Warning, line 32: Characters after RHS value are ignored.
+Warning, line 33: Characters after RHS value are ignored.
+Warning, line 34: Characters after RHS value are ignored.
+Warning, line 35: Characters after RHS value are ignored.
+Warning, line 36: Characters after RHS value are ignored.
+Warning, line 37: Characters after RHS value are ignored.
+Warning, line 38: Characters after RHS value are ignored.
+
+Problem 'data/test.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 20.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.00 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  2.0000000000e+01
+Solution time =    0.01 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.00 ticks  (0.33 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+z12                           1.000000
+z13                           1.000000
+z14                           1.000000
+z15                           1.000000
+z16                           1.000000
+z17                           1.000000
+z18                           1.000000
+z19                           1.000000
+z20                           1.000000
+x1                            1.000000
+x2                            1.000000
+x7                            1.000000
+x3                            1.000000
+x8                            1.000000
+x9                            1.000000
+x4                            1.000000
+x6                            1.000000
+x5                            1.000000
+x10                           1.000000
+x11                           1.000000
+x12                           1.000000
+x13                           1.000000
+x14                           1.000000
+x18                           1.000000
+x15                           1.000000
+x16                           1.000000
+x19                           1.000000
+x17                           1.000000
+x20                           1.000000
+x21                           1.000000
+x22                           1.000000
+x23                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 03:35:41 2024
+
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+Warning, line 27: Characters after RHS value are ignored.
+
+Problem 'data/test.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.00 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.00 ticks  (0.73 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x5                            1.000000
+x6                            1.000000
+x4                            1.000000
+x7                            1.000000
+x8                            1.000000
+x9                            1.000000
+x12                           1.000000
+x10                           1.000000
+x11                           1.000000
+x13                           1.000000
+x14                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 03:37:18 2024
+
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+Warning, line 27: Characters after RHS value are ignored.
+
+Problem 'data/test.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.44 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x5                            1.000000
+x7                            1.000000
+x4                            1.000000
+x6                            1.000000
+x8                            1.000000
+x9                            1.000000
+x12                           1.000000
+x10                           1.000000
+x11                           1.000000
+x13                           1.000000
+x14                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 03:37:43 2024
+
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+Warning, line 27: Characters after RHS value are ignored.
+
+Problem 'data/test.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.58 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x5                            1.000000
+x7                            1.000000
+x4                            1.000000
+x6                            1.000000
+x8                            1.000000
+x9                            1.000000
+x12                           1.000000
+x10                           1.000000
+x11                           1.000000
+x13                           1.000000
+x14                           1.000000
+
+Log started (V22.1.1.0) Sat Apr 20 03:38:27 2024
+
+Warning, line 17: Characters after RHS value are ignored.
+Warning, line 18: Characters after RHS value are ignored.
+Warning, line 19: Characters after RHS value are ignored.
+Warning, line 20: Characters after RHS value are ignored.
+Warning, line 21: Characters after RHS value are ignored.
+Warning, line 22: Characters after RHS value are ignored.
+Warning, line 23: Characters after RHS value are ignored.
+Warning, line 24: Characters after RHS value are ignored.
+Warning, line 25: Characters after RHS value are ignored.
+Warning, line 26: Characters after RHS value are ignored.
+Warning, line 27: Characters after RHS value are ignored.
+
+Problem 'data/test.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+Found incumbent of value 11.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 25 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Parallel b&c, 16 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.1000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 0.01 ticks  (3.33 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+z1                            1.000000
+z2                            1.000000
+z3                            1.000000
+z4                            1.000000
+z5                            1.000000
+z6                            1.000000
+z7                            1.000000
+z8                            1.000000
+z9                            1.000000
+z10                           1.000000
+z11                           1.000000
+x1                            1.000000
+x2                            1.000000
+x3                            1.000000
+x5                            1.000000
+x7                            1.000000
+x4                            1.000000
+x6                            1.000000
+x8                            1.000000
+x9                            1.000000
+x12                           1.000000
+x10                           1.000000
+x11                           1.000000
+x13                           1.000000
+x14                           1.000000
