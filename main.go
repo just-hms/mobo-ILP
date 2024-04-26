@@ -2,33 +2,20 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"math"
 
-	"github.com/just-hms/mobo/pkg/cplex"
-	"github.com/just-hms/mobo/pkg/opt"
-	"github.com/just-hms/mobo/pkg/qm/cube"
+	"github.com/just-hms/mobo/pkg/mobo"
 )
 
 func main() {
-	outs := []*opt.Output{
-		{Ones: []uint{1, 2, 3, 5}},
-		{Ones: []uint{1, 5, 6, 7}},
-	}
-	problem, cubes := opt.Formalize(outs)
+	outs := mobo.RandomOutputs(22)
+	ports, uniquePorts, solution := mobo.Solve(outs)
 
-	sol, err := cplex.Solve(problem)
+	fmt.Println("ports used", uniquePorts)
+	fmt.Println("cost", solution)
+	fmt.Println("circuits", ports)
+
+	err := mobo.Assert(outs, ports)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-
-	solution := []*cube.Cube{}
-	for _, v := range sol.Variables {
-		c := cubes[v.Name]
-		if math.Abs(v.Value-1) < 1e-3 {
-			solution = append(solution, c)
-		}
-	}
-
-	fmt.Println(solution)
 }

@@ -23,10 +23,13 @@ type UniqueCube struct {
 
 const template = `Minimize
 {obj}
+
 Subject To
 {constraints}
+
 Binary
 {bounds}
+
 End
 `
 
@@ -89,16 +92,15 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	constraints := []string{}
 	mapping := map[string]*cube.Cube{}
 	reverseMapping := map[*cube.Cube]string{}
-	iCount := 1
 
 	for i, o := range outs {
 		res := results[i]
 
 		for _, one := range o.Ones {
 			covers := []string{}
-			for i, c := range res {
+			for j, c := range res {
 				if c.Covers(one) {
-					key := fmt.Sprintf("v%d", i+iCount)
+					key := fmt.Sprintf("v%d%d", i+1, j+1)
 					covers = append(covers, key)
 					mapping[key] = c
 					reverseMapping[c] = key
@@ -107,9 +109,9 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 
 			constraints = append(constraints, strings.Join(covers, "+")+" >= 1 ")
 		}
-		iCount += len(res)
 
 		cubes = append(cubes, res...)
+		constraints = append(constraints, "")
 	}
 
 	uniqueCubes := uniqueCubes(cubes)
