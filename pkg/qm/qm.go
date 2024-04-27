@@ -70,10 +70,12 @@ func Cubes(ones []*cube.Cube) []*cube.Cube {
 func RandomOnes(seed int) []uint {
 	type fill struct{}
 
-	onesCount := rand.Intn(100) + 1
+	const size = 100
+	const _max = size * 2
+	onesCount := rand.Intn(size) + 1
 	ones := make(map[uint]fill, onesCount)
 	for range onesCount {
-		ones[uint(rand.Intn(200))] = fill{}
+		ones[uint(rand.Intn(_max))] = fill{}
 	}
 	onesList := maps.Keys(ones)
 	slices.Sort(onesList)

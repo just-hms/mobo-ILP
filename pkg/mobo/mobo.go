@@ -81,7 +81,7 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 
 func RandomOutputs(seed int) []*opt.Output {
 	rand := rand.New(rand.NewSource(int64(seed)))
-	n := rand.Intn(2) + 1
+	n := rand.Intn(16) + 1
 	outputs := make([]*opt.Output, n)
 	for i := range outputs {
 		outputs[i] = &opt.Output{Ones: qm.RandomOnes(seed)}
