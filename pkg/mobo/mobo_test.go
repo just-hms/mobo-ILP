@@ -10,8 +10,8 @@ import (
 func FuzzMobo(f *testing.F) {
 	f.Setenv("CPLEX_PATH", "/opt/ibm/ILOG/CPLEX_Studio2211/cplex/bin/x86-64_linux/cplex")
 
-	f.Add(int64(0))
-	f.Fuzz(func(t *testing.T, seed int64) {
+	f.Add(0)
+	f.Fuzz(func(t *testing.T, seed int) {
 		outs := mobo.RandomOutputs(seed)
 		ports, _, _ := mobo.Solve(outs)
 

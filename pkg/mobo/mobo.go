@@ -32,12 +32,13 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 				}
 			}
 
+			binary := strconv.FormatInt(int64(j), 2)
 			if mustBeCovered && len(coverers) == 0 {
-				return fmt.Errorf("out: %d, %d should be covered but is not", i+1, j)
+				return fmt.Errorf("out: %d, %s should be covered but is not", i+1, binary)
 			}
 
 			if !mustBeCovered && len(coverers) > 0 {
-				return fmt.Errorf("out: %d, %d shouldn't be covered but it is %v", i+1, j, coverers)
+				return fmt.Errorf("out: %d, %s shouldn't be covered but it is %v", i+1, binary, coverers)
 			}
 		}
 	}
@@ -77,8 +78,8 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 	return solutions, uniquePorts, math.Ceil(sol.Header.ObjectiveValue)
 }
 
-func RandomOutputs(seed int64) []*opt.Output {
-	rand := rand.New(rand.NewSource(seed))
+func RandomOutputs(seed int) []*opt.Output {
+	rand := rand.New(rand.NewSource(int64(seed)))
 	n := rand.Intn(10) + 1 // At least 1 output, up to 10.
 	outputs := make([]*opt.Output, n)
 	for i := range outputs {
