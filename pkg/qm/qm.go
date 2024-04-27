@@ -70,8 +70,8 @@ func Cubes(ones []*cube.Cube) []*cube.Cube {
 func RandomOnes(seed int) []uint {
 	type fill struct{}
 
-	const size = 100
-	const _max = size * 2
+	const _max = 2 << 8
+	const size = _max / 100
 	onesCount := rand.Intn(size) + 1
 	ones := make(map[uint]fill, onesCount)
 	for range onesCount {
