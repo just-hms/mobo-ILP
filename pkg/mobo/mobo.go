@@ -57,6 +57,8 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 	problem, cubes := opt.Formalize(outs)
 
+	fmt.Println(problem)
+
 	sol, err := cplex.Solve(problem)
 	if err != nil {
 		panic(err)
@@ -88,11 +90,25 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 }
 
 func RandomOutputs(seed int) []*opt.Output {
-	rand := rand.New(rand.NewSource(int64(seed)))
-	n := rand.Intn(200) + 1
-	outputs := make([]*opt.Output, n)
+	rnd := rand.New(rand.NewSource(int64(seed)))
+	size := rnd.Intn(200) + 1
+	outputs := make([]*opt.Output, size)
 	for i := range outputs {
-		outputs[i] = &opt.Output{Ones: qm.RandomOnes(seed)}
+		rnd = rand.New(rand.NewSource(int64(seed * i)))
+
+		// TODO: change seed
+		inputSize := rnd.Intn(200) + 1
+		onesRatio := rnd.Float64()
+		outputs[i] = &opt.Output{Ones: qm.RandomOnes(inputSize, onesRatio, seed)}
+	}
+	return outputs
+}
+
+func TestOutputs(size int, inputSize int, onesRatio float64, seed int) []*opt.Output {
+	outputs := make([]*opt.Output, size)
+	for i := range outputs {
+		// TODO: change seed better
+		outputs[i] = &opt.Output{Ones: qm.RandomOnes(inputSize, onesRatio, seed*i)}
 	}
 	return outputs
 }

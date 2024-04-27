@@ -5,7 +5,6 @@ import (
 	"slices"
 
 	"github.com/just-hms/mobo/pkg/qm/cube"
-	"golang.org/x/exp/maps"
 )
 
 func initGroups(size int) []map[string]*cube.Cube {
@@ -67,17 +66,20 @@ func Cubes(ones []*cube.Cube) []*cube.Cube {
 	return cubes
 }
 
-func RandomOnes(seed int) []uint {
-	type fill struct{}
+func RandomOnes(size int, onesRatio float64, seed int) []uint {
+	rand := rand.New(rand.NewSource(int64(seed)))
 
-	const _max = 2 << 8
-	const size = _max / 100
-	onesCount := rand.Intn(size) + 1
-	ones := make(map[uint]fill, onesCount)
-	for range onesCount {
-		ones[uint(rand.Intn(_max))] = fill{}
+	_max := 1 << uint(size)
+
+	ones := make([]uint, _max)
+	for i := range _max {
+		ones[i] = uint(i)
 	}
-	onesList := maps.Keys(ones)
-	slices.Sort(onesList)
-	return onesList
+	rand.Shuffle(len(ones), func(i, j int) {
+		ones[i], ones[j] = ones[j], ones[i]
+	})
+	ones = ones[:int(float64(_max)*onesRatio)]
+
+	slices.Sort(ones)
+	return ones
 }

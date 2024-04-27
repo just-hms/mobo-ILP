@@ -7,12 +7,13 @@ import (
 )
 
 func main() {
-	outs := mobo.RandomOutputs(22)
+	outs := mobo.TestOutputs(500, 10, 0.3, 20)
+
 	ports, uniquePorts, solution := mobo.Solve(outs)
 
 	fmt.Println("ports used", uniquePorts)
-	fmt.Println("cost", solution)
 	fmt.Println("circuits", ports)
+	fmt.Println("cost", solution)
 
 	err := mobo.Assert(outs, ports)
 	if err != nil {

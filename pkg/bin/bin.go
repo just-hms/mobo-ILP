@@ -1,5 +1,7 @@
 package bin
 
+import "math"
+
 // NextPowerOf2 calculates the smallest power of 2 greater than or equal to n
 func NextPowerOf2(n uint) uint {
 	if n == 0 {
@@ -13,4 +15,9 @@ func NextPowerOf2(n uint) uint {
 	n |= n >> 16
 	n++
 	return n
+}
+
+// NextPowerOf2 calculates the smallest power of 2 greater than or equal to n
+func Pow2(n uint) uint {
+	return uint(math.Pow(2, float64(n)))
 }

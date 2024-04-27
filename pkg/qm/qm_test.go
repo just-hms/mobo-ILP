@@ -1,6 +1,7 @@
 package qm_test
 
 import (
+	"math/rand"
 	"slices"
 	"strconv"
 	"testing"
@@ -113,7 +114,11 @@ func FuzzCubes(f *testing.F) {
 
 	f.Add(0)
 	f.Fuzz(func(t *testing.T, seed int) {
-		ones := qm.RandomOnes(seed)
+		rnd := rand.New(rand.NewSource(int64(seed)))
+		inputSize := rnd.Intn(200) + 1
+		onesRatio := rnd.Float64()
+
+		ones := qm.RandomOnes(inputSize, onesRatio, seed)
 
 		input := make([]*cube.Cube, 0, len(ones))
 		for _, o := range ones {
