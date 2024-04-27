@@ -11,6 +11,7 @@ import (
 	"github.com/just-hms/mobo/pkg/bin"
 	"github.com/just-hms/mobo/pkg/cplex"
 	"github.com/just-hms/mobo/pkg/opt"
+	"github.com/just-hms/mobo/pkg/qm"
 	"github.com/just-hms/mobo/pkg/qm/cube"
 )
 
@@ -56,7 +57,7 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 	solutions := make([][]*cube.Cube, len(outs))
 	uniquePorts := make([]*cube.Cube, 0, len(outs))
 	for _, v := range sol.Variables {
-		if math.Abs(v.Value-1) > 1e-3 {
+		if math.Abs(v.Value-1) > 1e-4 {
 			continue
 		}
 
@@ -67,7 +68,7 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 			continue
 		}
 
-		i, err := strconv.Atoi(string(v.Name[1]))
+		i, err := strconv.Atoi(strings.Split(v.Name, "_")[1])
 		if err != nil {
 			panic(err)
 		}
@@ -80,15 +81,10 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 
 func RandomOutputs(seed int) []*opt.Output {
 	rand := rand.New(rand.NewSource(int64(seed)))
-	n := rand.Intn(10) + 1 // At least 1 output, up to 10.
+	n := rand.Intn(2) + 1
 	outputs := make([]*opt.Output, n)
 	for i := range outputs {
-		onesCount := rand.Intn(100) + 1 // Each output has between 1 and 10 Ones.
-		ones := make([]uint, onesCount)
-		for j := range ones {
-			ones[j] = uint(rand.Intn(200)) // Random uint from 0 to 99.
-		}
-		outputs[i] = &opt.Output{Ones: ones}
+		outputs[i] = &opt.Output{Ones: qm.RandomOnes(seed)}
 	}
 	return outputs
 }

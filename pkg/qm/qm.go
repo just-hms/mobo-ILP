@@ -1,9 +1,11 @@
 package qm
 
 import (
+	"math/rand"
 	"slices"
 
 	"github.com/just-hms/mobo/pkg/qm/cube"
+	"golang.org/x/exp/maps"
 )
 
 func initGroups(size int) []map[string]*cube.Cube {
@@ -14,7 +16,7 @@ func initGroups(size int) []map[string]*cube.Cube {
 	return groups
 }
 
-func GetCubes(ones []*cube.Cube) []*cube.Cube {
+func Cubes(ones []*cube.Cube) []*cube.Cube {
 	size := slices.MaxFunc(ones, func(a, b *cube.Cube) int { return a.Len() - b.Len() }).Len()
 
 	groups := initGroups(size)
@@ -63,4 +65,17 @@ func GetCubes(ones []*cube.Cube) []*cube.Cube {
 		groups = nextGroups
 	}
 	return cubes
+}
+
+func RandomOnes(seed int) []uint {
+	type fill struct{}
+
+	onesCount := rand.Intn(100) + 1
+	ones := make(map[uint]fill, onesCount)
+	for range onesCount {
+		ones[uint(rand.Intn(200))] = fill{}
+	}
+	onesList := maps.Keys(ones)
+	slices.Sort(onesList)
+	return onesList
 }

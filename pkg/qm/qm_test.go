@@ -2,14 +2,16 @@ package qm_test
 
 import (
 	"slices"
+	"strconv"
 	"testing"
 
+	"github.com/just-hms/mobo/pkg/bin"
 	"github.com/just-hms/mobo/pkg/qm"
 	"github.com/just-hms/mobo/pkg/qm/cube"
 	"github.com/stretchr/testify/require"
 )
 
-func TestGetCubes(t *testing.T) {
+func TestCubes(t *testing.T) {
 	t.Parallel()
 	req := require.New(t)
 
@@ -82,7 +84,7 @@ func TestGetCubes(t *testing.T) {
 
 		t.Run(tt.name, func(t *testing.T) {
 			// t.Parallel()
-			got := qm.GetCubes(tt.input)
+			got := qm.Cubes(tt.input)
 
 			gotDump := []string{}
 			for _, g := range got {
@@ -104,4 +106,46 @@ func TestGetCubes(t *testing.T) {
 
 		})
 	}
+}
+
+func FuzzCubes(f *testing.F) {
+	req := require.New(f)
+
+	f.Add(0)
+	f.Fuzz(func(t *testing.T, seed int) {
+		ones := qm.RandomOnes(seed)
+
+		input := make([]*cube.Cube, 0, len(ones))
+		for _, o := range ones {
+			input = append(input, cube.New(o))
+		}
+
+		cubes := qm.Cubes(input)
+		_max := slices.MaxFunc(ones, func(a, b uint) int {
+			return int(a) - int(b)
+		})
+
+		for j := range bin.NextPowerOf2(_max) {
+
+			mustBeCovered := slices.Contains(ones, j)
+			coverers := make([]*cube.Cube, 0)
+			for _, c := range cubes {
+				if c.Covers(j) {
+					coverers = append(coverers, c)
+					break
+				}
+			}
+
+			binary := strconv.FormatInt(int64(j), 2)
+			if mustBeCovered && len(coverers) == 0 {
+				req.Failf("fail", "out: %d, %s should be covered but is not", j+1, binary)
+			}
+
+			if !mustBeCovered && len(coverers) > 0 {
+				req.Failf("fail", "out: %d, %s shouldn't be covered but it is %v", j+1, binary, coverers)
+			}
+		}
+
+	})
+
 }

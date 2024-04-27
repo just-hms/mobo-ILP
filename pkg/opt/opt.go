@@ -61,7 +61,7 @@ func getCubes(outs []*Output) [][]*cube.Cube {
 				input = append(input, cube.New(dc))
 			}
 
-			res := qm.GetCubes(input)
+			res := qm.Cubes(input)
 
 			// remove cubes which cover only dontCares
 			res = slices.DeleteFunc(res, func(c *cube.Cube) bool {
@@ -88,7 +88,6 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	results := getCubes(outs)
 
 	// problem generation
-
 	constraints := []string{}
 	mapping := map[string]*cube.Cube{}
 	reverseMapping := map[*cube.Cube]string{}
@@ -100,7 +99,7 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 			covers := []string{}
 			for j, c := range res {
 				if c.Covers(one) {
-					key := fmt.Sprintf("v%d%d", i+1, j+1)
+					key := fmt.Sprintf("v_%d_%d", i+1, j+1)
 					covers = append(covers, key)
 					mapping[key] = c
 					reverseMapping[c] = key
@@ -118,7 +117,7 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 
 	cost := []string{}
 	for i, c := range uniqueCubes {
-		key := fmt.Sprintf("z%d", i+1)
+		key := fmt.Sprintf("z_%d", i+1)
 		mapping[key] = c.Cube
 
 		refs := []string{}
