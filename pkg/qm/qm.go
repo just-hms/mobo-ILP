@@ -7,6 +7,7 @@ import (
 	"github.com/just-hms/mobo/pkg/qm/cube"
 )
 
+// initGroups initialize the QM groups
 func initGroups(size int) []map[string]*cube.Cube {
 	groups := make([]map[string]*cube.Cube, size+1)
 	for i := range groups {
@@ -15,6 +16,7 @@ func initGroups(size int) []map[string]*cube.Cube {
 	return groups
 }
 
+// Cubes is a variant of the QM algorithm which return all the implicant(cubes), not just the prime ones
 func Cubes(ones []*cube.Cube) []*cube.Cube {
 	size := slices.MaxFunc(ones, func(a, b *cube.Cube) int { return a.Len() - b.Len() }).Len()
 
@@ -66,6 +68,7 @@ func Cubes(ones []*cube.Cube) []*cube.Cube {
 	return cubes
 }
 
+// RandomOnes generate a slice of ones with the provided info
 func RandomOnes(size int, onesRatio float64, seed int) []uint {
 	rand := rand.New(rand.NewSource(int64(seed)))
 

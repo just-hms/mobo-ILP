@@ -33,6 +33,7 @@ Binary
 End
 `
 
+// uniqueCubes returns a list of unique cubes given a list of cubes
 func uniqueCubes(cubes []*cube.Cube) []*UniqueCube {
 	uniqueCubes := map[string]*UniqueCube{}
 	for _, c := range cubes {
@@ -45,13 +46,14 @@ func uniqueCubes(cubes []*cube.Cube) []*UniqueCube {
 	return maps.Values(uniqueCubes)
 }
 
+// getCubes retuns a list of all the cubes from a list of thruth tables using QM algorithm
 func getCubes(outs []*Output) [][]*cube.Cube {
 	results := make([][]*cube.Cube, len(outs))
-	var wg sync.WaitGroup // WaitGroup to wait for all goroutines to finish
+	var wg sync.WaitGroup
 
 	for i, o := range outs {
-		wg.Add(1)   // Increment the WaitGroup counter
-		go func() { // Launch a goroutine
+		wg.Add(1)
+		go func() {
 			defer wg.Done()
 			input := make([]*cube.Cube, 0, len(o.Ones)+len(o.DontCares))
 			for _, one := range o.Ones {
@@ -81,6 +83,7 @@ func getCubes(outs []*Output) [][]*cube.Cube {
 	return results
 }
 
+// Formalize formalizes the problem of sintethizing a boolean function into a ILP problem in .lp format
 func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 	cubes := []*cube.Cube{}
 

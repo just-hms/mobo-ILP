@@ -18,6 +18,7 @@ func New(val uint) *Cube {
 	return FromString(strconv.FormatInt(int64(val), 2))
 }
 
+// FromString generates a cube from a string
 func FromString(val string) *Cube {
 	c := &Cube{
 		val:   &bitset.BitSet{},
@@ -42,6 +43,7 @@ func FromString(val string) *Cube {
 	return c
 }
 
+// Clone returns a clone of the current cube
 func (c *Cube) Clone() *Cube {
 	return &Cube{
 		val:   c.val.Clone(),
@@ -49,10 +51,12 @@ func (c *Cube) Clone() *Cube {
 	}
 }
 
+// Ones retuns the number of ones in the cube
 func (c *Cube) Ones() uint {
 	return c.val.DifferenceCardinality(c.minus)
 }
 
+// Repr returns the representation of the cube in a specified number of bits
 func (c *Cube) Repr(size uint) (string, error) {
 	res := c.String()
 
@@ -70,10 +74,12 @@ func (c *Cube) Repr(size uint) (string, error) {
 
 }
 
+// Len returns the minumun number of bits to represent the cube
 func (c *Cube) Len() int {
 	return int(max(c.val.Len(), c.minus.Len()))
 }
 
+// String retuns the representation of the cube in the minimum amount of bits
 func (c *Cube) String() string {
 	len := c.Len()
 	res := make([]rune, 0, len)
@@ -91,6 +97,7 @@ func (c *Cube) String() string {
 	return string(res)
 }
 
+// Equal returns true if a cube is equal to the provided one
 func (c *Cube) Equal(b *Cube) bool {
 	minusDiff := c.minus.SymmetricDifferenceCardinality(b.minus)
 	if minusDiff != 0 {
@@ -101,6 +108,7 @@ func (c *Cube) Equal(b *Cube) bool {
 	return allC.SymmetricDifferenceCardinality(allB) == 0
 }
 
+// Covers returns true if the cube cover a minterm in the circuit
 func (c *Cube) Covers(one uint) bool {
 
 	input := New(one).val
@@ -111,6 +119,7 @@ func (c *Cube) Covers(one uint) bool {
 	return maskC.Equal(maskInput)
 }
 
+// Merge merges two cubes using the QM rules, returns an error if they are equal or they are too distant
 func Merge(a, b *Cube) (*Cube, error) {
 	if a.Equal(b) {
 		return nil, errors.New("cannot merge they are equal")

@@ -16,6 +16,7 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
+// Assert verifies that the provided ports correctly synthetize the provided circuit
 func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 	var wg errgroup.Group
 
@@ -54,6 +55,7 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 	return wg.Wait()
 }
 
+// Solve given a thruth table returns the cube to use in each sub-circuit, the unique port used and the cost of them using CPLEX
 func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 	problem, cubes := opt.Formalize(outs)
 
@@ -89,14 +91,13 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 	return solutions, uniquePorts, math.Ceil(sol.Header.ObjectiveValue)
 }
 
+// RandomOutputs generates a random thruth table
 func RandomOutputs(seed int) []*opt.Output {
 	rnd := rand.New(rand.NewSource(int64(seed)))
 	size := rnd.Intn(200) + 1
 	outputs := make([]*opt.Output, size)
 	for i := range outputs {
 		rnd = rand.New(rand.NewSource(int64(seed * i)))
-
-		// TODO: change seed
 		inputSize := rnd.Intn(200) + 1
 		onesRatio := rnd.Float64()
 		outputs[i] = &opt.Output{Ones: qm.RandomOnes(inputSize, onesRatio, seed)}
@@ -104,8 +105,9 @@ func RandomOutputs(seed int) []*opt.Output {
 	return outputs
 }
 
-func TestOutputs(size int, inputSize int, onesRatio float64, seed int) []*opt.Output {
-	outputs := make([]*opt.Output, size)
+// TestOutputs given outputSize, outputSize and number of ones generates a random truth table
+func TestOutputs(outputSize int, inputSize int, onesRatio float64, seed int) []*opt.Output {
+	outputs := make([]*opt.Output, outputSize)
 	for i := range outputs {
 		// TODO: change seed better
 		outputs[i] = &opt.Output{Ones: qm.RandomOnes(inputSize, onesRatio, seed*i)}
