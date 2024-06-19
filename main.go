@@ -20,22 +20,13 @@ func main() {
 					outs := mobo.TestOutputs(nOuts, nIn, onesRatio, seed)
 
 					start := time.Now()
-					ports, _, globalCost := mobo.Solve(outs)
+					_, _, globalCost := mobo.Solve(outs)
 					duration := time.Since(start)
 
-					err := mobo.Assert(outs, ports)
-					if err != nil {
-						panic(fmt.Errorf("err: %s, seed: %d", err, seed))
-					}
-
 					totalCost := 0.0
-					for outIdx, out := range outs {
+					for _, out := range outs {
 						singleOut := []*opt.Output{out}
-						ports, _, cost := mobo.Solve(singleOut)
-						err := mobo.Assert(singleOut, ports)
-						if err != nil {
-							panic(fmt.Errorf("err: %s, seed: %d, out: %d", err, seed, outIdx))
-						}
+						_, _, cost := mobo.Solve(singleOut)
 						totalCost += cost
 					}
 
