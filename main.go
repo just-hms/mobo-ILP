@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	outs := mobo.TestOutputs(500, 10, 0.3, 20)
+	outs := mobo.TestOutputs(200, 10, 0.1, 20)
 
 	ports, uniquePorts, solution := mobo.Solve(outs)
 
