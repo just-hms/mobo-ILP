@@ -75,7 +75,6 @@ func extract(out []byte) (*CPLEXSolution, error) {
 	var solution *CPLEXSolution
 	err := xml.Unmarshal(out, &solution)
 	if err != nil {
-		fmt.Println("Error unmarshalling XML:", err)
 		return nil, err
 	}
 	return solution, nil

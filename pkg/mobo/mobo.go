@@ -21,10 +21,16 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 	var wg errgroup.Group
 
 	for i, o := range outs {
-
 		wg.Go(func() error {
 
 			cubes := ports[i]
+
+			if len(o.Ones) == 0 {
+				if len(cubes) != 0 {
+					return fmt.Errorf("circuit should be empty but is not")
+				}
+				return nil
+			}
 
 			_max := slices.MaxFunc(slices.Concat(o.Ones, o.DontCares), func(a, b uint) int {
 				return int(a) - int(b)
@@ -57,9 +63,16 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 
 // Solve given a thruth table returns the cube to use in each sub-circuit, the unique port used and the cost of them using CPLEX
 func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
-	problem, cubes := opt.Formalize(outs)
+	nOnes := 0
+	for _, o := range outs {
+		nOnes += len(o.Ones)
+	}
 
-	fmt.Println(problem)
+	if nOnes == 0 {
+		return make([][]*cube.Cube, len(outs)), make([]*cube.Cube, 0), 0
+	}
+
+	problem, cubes := opt.Formalize(outs)
 
 	sol, err := cplex.Solve(problem)
 	if err != nil {
@@ -109,7 +122,6 @@ func RandomOutputs(seed int) []*opt.Output {
 func TestOutputs(outputSize int, inputSize int, onesRatio float64, seed int) []*opt.Output {
 	outputs := make([]*opt.Output, outputSize)
 	for i := range outputs {
-		// TODO: change seed better
 		outputs[i] = &opt.Output{Ones: qm.RandomOnes(inputSize, onesRatio, seed*i)}
 	}
 	return outputs
