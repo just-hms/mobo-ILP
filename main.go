@@ -12,8 +12,9 @@ import (
 
 func main() {
 	tests := 10
+
 	for range tests {
-		for nOuts := 1; nOuts <= 8; nOuts++ {
+		for nOuts := 2; nOuts <= 8; nOuts++ {
 			for nIn := 1; nIn <= 8; nIn++ {
 				for onesRatio := 0.1; onesRatio < 0.50+1e-3; onesRatio += 0.1 {
 
