@@ -16,7 +16,7 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
-// Assert verifies that the provided ports correctly synthetize the provided circuit
+// Assert verifies that the generated ports correctly synthetize the provided circuit
 func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 	var wg errgroup.Group
 
