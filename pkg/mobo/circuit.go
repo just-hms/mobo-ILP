@@ -14,5 +14,5 @@ func (c Circuit) Display(size uint) string {
 		s = append(s, gate.Display(size))
 	}
 
-	return strings.Join(s, "+")
+	return strings.Join(s, " + ")
 }
