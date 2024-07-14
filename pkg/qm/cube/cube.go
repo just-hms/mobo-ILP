@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"slices"
 	"strconv"
+	"strings"
 
 	"github.com/bits-and-blooms/bitset"
 )
@@ -117,6 +118,38 @@ func (c *Cube) Covers(one uint) bool {
 	maskInput := input.Union(c.minus)
 
 	return maskC.Equal(maskInput)
+}
+
+// Display prints the cube using x_1*!x_2 format
+func (c *Cube) Display(size uint) string {
+
+	s, err := c.Repr(size)
+	if err != nil {
+		return "Error: " + err.Error()
+	}
+
+	rev := []rune(s)
+	slices.Reverse(rev)
+
+	builder := strings.Builder{}
+
+	sep := ""
+	for i := 0; i < len(rev); i++ {
+		if rev[i] == '-' {
+			continue
+		}
+
+		builder.WriteString(sep)
+
+		if rev[i] == '0' {
+			builder.WriteString("!")
+		}
+
+		builder.WriteString(fmt.Sprintf("x_%d", i+1))
+		sep = "*"
+	}
+
+	return builder.String()
 }
 
 // Merge merges two cubes using the QM rules, returns an error if they are equal or they are too distant

@@ -4,6 +4,7 @@ go 1.22.0
 
 require (
 	github.com/bits-and-blooms/bitset v1.13.0
+	github.com/danielgtaylor/unistyle v0.0.0-20190218054314-fff153823f5f
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/exp v0.0.0-20240416160154-fe59bbe5cc7f
 	golang.org/x/sync v0.7.0

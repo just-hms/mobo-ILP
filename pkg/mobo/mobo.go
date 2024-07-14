@@ -17,13 +17,17 @@ import (
 )
 
 // Assert verifies that the generated ports correctly synthetize the provided circuit
-func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
+func Assert(outs []*opt.Output, circuits []Circuit) error {
 	var wg errgroup.Group
+
+	if len(outs) != len(circuits) {
+		return fmt.Errorf("provided %d output with %d circuits", len(outs), len(circuits))
+	}
 
 	for i, o := range outs {
 		wg.Go(func() error {
 
-			cubes := ports[i]
+			cubes := circuits[i]
 
 			if len(o.Ones) == 0 {
 				if len(cubes) != 0 {
@@ -37,6 +41,11 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 			})
 
 			for j := range bin.NextPowerOf2(_max) {
+				isDontCare := slices.Contains(o.DontCares, j)
+				if isDontCare {
+					continue
+				}
+
 				mustBeCovered := slices.Contains(o.Ones, j)
 				coverers := make([]*cube.Cube, 0)
 				for _, c := range cubes {
@@ -52,7 +61,7 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 				}
 
 				if !mustBeCovered && len(coverers) > 0 {
-					return fmt.Errorf("out: %d, %s shouldn't be covered but it is %v", i+1, binary, coverers)
+					return fmt.Errorf("out: %d, %s shouldn't be covered but is covered by %v", i+1, binary, coverers)
 				}
 			}
 			return nil
@@ -61,15 +70,15 @@ func Assert(outs []*opt.Output, ports [][]*cube.Cube) error {
 	return wg.Wait()
 }
 
-// Solve given a thruth table returns the cube to use in each sub-circuit, the unique port used and the cost of them using CPLEX
-func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
+// Solve given a thruth table returns the cube to use in each sub-circuit, the unique gates used and the cost of them using CPLEX
+func Solve(outs []*opt.Output) ([]Circuit, []*cube.Cube, float64) {
 	nOnes := 0
 	for _, o := range outs {
 		nOnes += len(o.Ones)
 	}
 
 	if nOnes == 0 {
-		return make([][]*cube.Cube, len(outs)), make([]*cube.Cube, 0), 0
+		return make([]Circuit, len(outs)), make([]*cube.Cube, 0), 0
 	}
 
 	problem, cubes := opt.Formalize(outs)
@@ -79,7 +88,7 @@ func Solve(outs []*opt.Output) ([][]*cube.Cube, []*cube.Cube, float64) {
 		panic(err)
 	}
 
-	solutions := make([][]*cube.Cube, len(outs))
+	solutions := make([]Circuit, len(outs))
 	uniquePorts := make([]*cube.Cube, 0, len(outs))
 	for _, v := range sol.Variables {
 		if math.Abs(v.Value-1) > 1e-4 {
