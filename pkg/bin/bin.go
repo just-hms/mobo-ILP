@@ -17,7 +17,7 @@ func NextPowerOf2(n uint) uint {
 	return n
 }
 
-// NextPowerOf2 calculates the smallest power of 2 greater than or equal to n
+// Pow2 math.Pow casted to uint
 func Pow2(n uint) uint {
 	return uint(math.Pow(2, float64(n)))
 }
