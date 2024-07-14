@@ -15,7 +15,7 @@ func main() {
 
 	for range tests {
 		for nOuts := 2; nOuts <= 8; nOuts++ {
-			for nIn := 1; nIn <= 8; nIn++ {
+			for nIn := 2; nIn <= 8; nIn++ {
 				for onesRatio := 0.1; onesRatio < 0.50+1e-3; onesRatio += 0.1 {
 
 					seed := rand.Int()
@@ -27,19 +27,18 @@ func main() {
 					done := make(chan struct{})
 
 					go func() {
-
 						start := time.Now()
-						_, _, globalCost := mobo.Solve(outs)
+						_, _, multiCost := mobo.Solve(outs)
 						duration := time.Since(start)
 
-						totalCost := 0.0
+						singleCost := 0.0
 						for _, out := range outs {
 							singleOut := []*opt.Output{out}
 							_, _, cost := mobo.Solve(singleOut)
-							totalCost += cost
+							singleCost += cost
 						}
 
-						fmt.Printf("%d,%d,%d,%.2f,%.2f,%.2f,%d\n", seed, nOuts, nIn, onesRatio, globalCost, totalCost, duration.Milliseconds())
+						fmt.Printf("%d,%d,%d,%.2f,%.2f,%.2f,%d\n", seed, nOuts, nIn, onesRatio, multiCost, singleCost, duration.Milliseconds())
 						done <- struct{}{}
 					}()
 
