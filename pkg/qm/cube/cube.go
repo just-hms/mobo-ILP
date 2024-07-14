@@ -122,7 +122,6 @@ func (c *Cube) Covers(one uint) bool {
 
 // Display prints the cube using x_1*!x_2 format
 func (c *Cube) Display(size uint) string {
-
 	s, err := c.Repr(size)
 	if err != nil {
 		return "Error: " + err.Error()
@@ -150,6 +149,18 @@ func (c *Cube) Display(size uint) string {
 	}
 
 	return builder.String()
+}
+
+func (c *Cube) FanInCost() uint {
+	s := c.String()
+	count := uint(0)
+	for _, r := range s {
+		if r == '-' {
+			continue
+		}
+		count++
+	}
+	return count
 }
 
 // Merge merges two cubes using the QM rules, returns an error if they are equal or they are too distant

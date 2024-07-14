@@ -1,4 +1,4 @@
-package opt
+package optimizer
 
 import (
 	"fmt"
@@ -84,7 +84,7 @@ func getCubes(outs []*Output) [][]*cube.Cube {
 }
 
 // Formalize formalizes the problem of sintethizing a boolean function into a ILP problem in .lp format
-func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
+func Formalize(outs []*Output, cost CostType) (string, map[string]*cube.Cube) {
 	cubes := []*cube.Cube{}
 
 	// heavy computation
@@ -118,7 +118,7 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 
 	uniqueCubes := uniqueCubes(cubes)
 
-	cost := []string{}
+	costFunction := []string{}
 	for i, c := range uniqueCubes {
 		key := fmt.Sprintf("z_%d", i+1)
 		mapping[key] = c.Cube
@@ -129,11 +129,16 @@ func Formalize(outs []*Output) (string, map[string]*cube.Cube) {
 		}
 
 		constraints = append(constraints, fmt.Sprintf("%s - %s >= 0", key, strings.Join(refs, "-")))
-		cost = append(cost, key)
+		v := key
+		if cost == FAN_IN {
+			v = fmt.Sprintf("%d %s", c.Cube.FanInCost(), key)
+		}
+		costFunction = append(costFunction, v)
 	}
 
-	template := strings.ReplaceAll(template, "{obj}", " obj: "+strings.Join(cost, "+"))
+	template := strings.ReplaceAll(template, "{obj}", " obj: "+strings.Join(costFunction, " + "))
 	template = strings.ReplaceAll(template, "{constraints}", " "+strings.Join(constraints, "\n "))
 	template = strings.ReplaceAll(template, "{bounds}", " "+strings.Join(maps.Keys(mapping), "\n "))
+
 	return template, mapping
 }

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/just-hms/mobo/pkg/mobo"
-	"github.com/just-hms/mobo/pkg/opt"
+	"github.com/just-hms/mobo/pkg/optimizer"
 )
 
 func main() {
@@ -28,13 +28,13 @@ func main() {
 
 					go func() {
 						start := time.Now()
-						_, _, multiCost := mobo.Solve(outs)
+						_, _, multiCost := mobo.Solve(outs, optimizer.GATE)
 						duration := time.Since(start)
 
 						singleCost := 0.0
 						for _, out := range outs {
-							singleOut := []*opt.Output{out}
-							_, _, cost := mobo.Solve(singleOut)
+							singleOut := []*optimizer.Output{out}
+							_, _, cost := mobo.Solve(singleOut, optimizer.GATE)
 							singleCost += cost
 						}
 

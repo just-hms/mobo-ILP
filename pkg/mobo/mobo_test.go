@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/just-hms/mobo/pkg/mobo"
+	"github.com/just-hms/mobo/pkg/optimizer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -13,7 +14,7 @@ func FuzzMobo(f *testing.F) {
 	f.Add(0)
 	f.Fuzz(func(t *testing.T, seed int) {
 		outs := mobo.RandomOutputs(seed)
-		ports, _, _ := mobo.Solve(outs)
+		ports, _, _ := mobo.Solve(outs, optimizer.GATE)
 
 		err := mobo.Assert(outs, ports)
 		require.NoError(t, err)
