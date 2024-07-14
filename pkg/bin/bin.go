@@ -17,7 +17,10 @@ func NextPowerOf2(n uint) uint {
 	return n
 }
 
-// Pow2 math.Pow casted to uint
-func Pow2(n uint) uint {
-	return uint(math.Pow(2, float64(n)))
+// MinBitsNeeded calculates the minimum number of bits required to represent a given non-negative integer.
+func MinBitsNeeded(n uint) uint {
+	if n == 0 {
+		return 1
+	}
+	return uint(math.Log2(float64(n)) + 1)
 }

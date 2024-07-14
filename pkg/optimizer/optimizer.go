@@ -84,7 +84,7 @@ func getCubes(outs []*Output) [][]*cube.Cube {
 }
 
 // Formalize formalizes the problem of sintethizing a boolean function into a ILP problem in .lp format
-func Formalize(outs []*Output, cost CostType) (string, map[string]*cube.Cube) {
+func Formalize(outs []*Output, cost CostType, size uint) (string, map[string]*cube.Cube) {
 	cubes := []*cube.Cube{}
 
 	// heavy computation
@@ -131,7 +131,7 @@ func Formalize(outs []*Output, cost CostType) (string, map[string]*cube.Cube) {
 		constraints = append(constraints, fmt.Sprintf("%s - %s >= 0", key, strings.Join(refs, "-")))
 		v := key
 		if cost == FAN_IN {
-			v = fmt.Sprintf("%d %s", c.Cube.FanInCost(), key)
+			v = fmt.Sprintf("%d %s", c.FanInCost(size), key)
 		}
 		costFunction = append(costFunction, v)
 	}

@@ -70,6 +70,10 @@ func Cubes(ones []*cube.Cube) []*cube.Cube {
 
 // RandomOnes generate a slice of ones with the provided info
 func RandomOnes(size int, onesRatio float64, seed int) []uint {
+	if onesRatio == 0 {
+		return []uint{}
+	}
+
 	rand := rand.New(rand.NewSource(int64(seed)))
 
 	_max := 1 << uint(size)
@@ -81,8 +85,12 @@ func RandomOnes(size int, onesRatio float64, seed int) []uint {
 	rand.Shuffle(len(ones), func(i, j int) {
 		ones[i], ones[j] = ones[j], ones[i]
 	})
-	ones = ones[:int(float64(_max)*onesRatio)]
+
+	// set a least one 1 if ones ratio is not 0
+	onesNumber := max(1, int(float64(_max)*onesRatio))
+	ones = ones[:onesNumber]
 
 	slices.Sort(ones)
+
 	return ones
 }

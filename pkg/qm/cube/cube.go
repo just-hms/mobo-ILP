@@ -151,8 +151,12 @@ func (c *Cube) Display(size uint) string {
 	return builder.String()
 }
 
-func (c *Cube) FanInCost() uint {
-	s := c.String()
+func (c *Cube) FanInCost(size uint) uint {
+	s, err := c.Repr(size)
+	if err != nil {
+		panic(err)
+	}
+
 	count := uint(0)
 	for _, r := range s {
 		if r == '-' {

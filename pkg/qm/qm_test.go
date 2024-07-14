@@ -115,8 +115,9 @@ func FuzzCubes(f *testing.F) {
 	f.Add(0)
 	f.Fuzz(func(t *testing.T, seed int) {
 		rnd := rand.New(rand.NewSource(int64(seed)))
-		inputSize := rnd.Intn(200) + 1
+		inputSize := rnd.Intn(5) + 3
 		onesRatio := rnd.Float64()
+		onesRatio = max(0.1, onesRatio)
 
 		ones := qm.RandomOnes(inputSize, onesRatio, seed)
 

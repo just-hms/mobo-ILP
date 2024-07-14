@@ -19,8 +19,6 @@ func main() {
 		},
 	}
 
-	const nIN = 4
-
 	// generate the solution
 	circuits, gates, cost := mobo.Solve(truthTable, optimizer.FAN_IN)
 
@@ -34,13 +32,13 @@ func main() {
 	fmt.Println("------------------------")
 	for i, c := range circuits {
 		fmt.Printf("%d: ", i+1)
-		fmt.Println(c.Display(nIN))
+		fmt.Println(c.Display(4))
 	}
 	fmt.Println()
 	fmt.Println("Gates")
 	fmt.Println("------------------------")
 	for _, gate := range gates {
-		fmt.Println(gate.Display(nIN))
+		fmt.Println(gate.Display(4))
 	}
 	fmt.Println()
 	fmt.Println("Cost:", cost)

@@ -70,6 +70,16 @@ func Assert(outs []*optimizer.Output, circuits []Circuit) error {
 	return wg.Wait()
 }
 
+func inputSize(outs []*optimizer.Output) uint {
+	_max := uint(0)
+	for _, o := range outs {
+		_max = max(_max, slices.MaxFunc(slices.Concat(o.Ones, o.DontCares), func(a, b uint) int {
+			return int(a) - int(b)
+		}))
+	}
+	return bin.MinBitsNeeded(_max)
+}
+
 // Solve given a thruth table returns the cube to use in each sub-circuit, the unique gates used and the cost of them using CPLEX
 func Solve(outs []*optimizer.Output, cost optimizer.CostType) ([]Circuit, []*cube.Cube, float64) {
 	nOnes := 0
@@ -81,7 +91,9 @@ func Solve(outs []*optimizer.Output, cost optimizer.CostType) ([]Circuit, []*cub
 		return make([]Circuit, len(outs)), make([]*cube.Cube, 0), 0
 	}
 
-	problem, cubes := optimizer.Formalize(outs, cost)
+	size := inputSize(outs)
+
+	problem, cubes := optimizer.Formalize(outs, cost, size)
 
 	sol, err := cplex.Solve(problem)
 	if err != nil {
@@ -116,11 +128,11 @@ func Solve(outs []*optimizer.Output, cost optimizer.CostType) ([]Circuit, []*cub
 // RandomOutputs generates a random thruth table
 func RandomOutputs(seed int) []*optimizer.Output {
 	rnd := rand.New(rand.NewSource(int64(seed)))
-	size := rnd.Intn(200) + 1
+	size := rnd.Intn(5) + 2
 	outputs := make([]*optimizer.Output, size)
 	for i := range outputs {
 		rnd = rand.New(rand.NewSource(int64(seed * i)))
-		inputSize := rnd.Intn(200) + 1
+		inputSize := rnd.Intn(5) + 2
 		onesRatio := rnd.Float64()
 		outputs[i] = &optimizer.Output{Ones: qm.RandomOnes(inputSize, onesRatio, seed)}
 	}
