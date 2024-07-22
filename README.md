@@ -1,6 +1,6 @@
-# MOBO
+# MOBO-ILP
 
-multi output boolean optimizer
+multi output boolean optimizer using golang and CPLEX
 
 
 # usage

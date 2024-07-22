@@ -20,9 +20,9 @@ func main() {
 	}
 
 	// generate the solution
-	circuits, gates, cost := mobo.Solve(truthTable, optimizer.FAN_IN)
+	circuits, gates, cost := mobo.Solve(truthTable, optimizer.FAN_IN_COST)
 
-	// assert that the solution correctly resembles the truthtable
+	// assert that the solution is equivalent to the truthtable
 	err := mobo.Assert(truthTable, circuits)
 	if err != nil {
 		panic(err)

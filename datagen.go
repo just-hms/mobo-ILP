@@ -28,13 +28,13 @@ func main() {
 
 					go func() {
 						start := time.Now()
-						_, _, multiCost := mobo.Solve(outs, optimizer.GATE)
+						_, _, multiCost := mobo.Solve(outs, optimizer.GATE_COST)
 						duration := time.Since(start)
 
 						singleCost := 0.0
 						for _, out := range outs {
 							singleOut := []*optimizer.Output{out}
-							_, _, cost := mobo.Solve(singleOut, optimizer.GATE)
+							_, _, cost := mobo.Solve(singleOut, optimizer.GATE_COST)
 							singleCost += cost
 						}
 

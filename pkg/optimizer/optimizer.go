@@ -87,12 +87,16 @@ func getCubes(outs []*Output) [][]*cube.Cube {
 func Formalize(outs []*Output, cost CostType, size uint) (string, map[string]*cube.Cube) {
 	cubes := []*cube.Cube{}
 
-	// heavy computation
+	// variable generation
 	results := getCubes(outs)
 
-	// problem generation
+	// problem formulation
 	constraints := []string{}
+
+	// maps a variable to a cube
 	mapping := map[string]*cube.Cube{}
+
+	// maps a cube to a variable
 	reverseMapping := map[*cube.Cube]string{}
 
 	for i, o := range outs {
@@ -109,6 +113,7 @@ func Formalize(outs []*Output, cost CostType, size uint) (string, map[string]*cu
 				}
 			}
 
+			// add coverage constraints
 			constraints = append(constraints, strings.Join(covers, "+")+" >= 1 ")
 		}
 
@@ -118,22 +123,43 @@ func Formalize(outs []*Output, cost CostType, size uint) (string, map[string]*cu
 
 	uniqueCubes := uniqueCubes(cubes)
 
-	costFunction := []string{}
 	for i, c := range uniqueCubes {
 		key := fmt.Sprintf("z_%d", i+1)
 		mapping[key] = c.Cube
 
+		// get the ref variable of all the cubes the unique cube is linked to and an OR constraint to manage them
 		refs := []string{}
 		for _, c := range c.refs {
 			refs = append(refs, fmt.Sprintf("%.5f ", 1/(float64(len(outs))+1))+reverseMapping[c])
 		}
 
+		// add choiche constraints
 		constraints = append(constraints, fmt.Sprintf("%s - %s >= 0", key, strings.Join(refs, "-")))
-		v := key
-		if cost == FAN_IN {
-			v = fmt.Sprintf("%d %s", c.FanInCost(size), key)
+	}
+
+	costFunction := []string{}
+
+	switch cost {
+	case GATE_COST:
+		for ref := range mapping {
+			if strings.HasPrefix(ref, "z") {
+				costFunction = append(costFunction, ref)
+			}
 		}
-		costFunction = append(costFunction, v)
+	case FAN_IN_COST:
+		for ref, cube := range mapping {
+			// consider every unique cube as +fan_in cost (inputs of AND gate)
+			if strings.HasPrefix(ref, "z") {
+				fanInCost := fmt.Sprintf("%d %s", cube.FanInCost(size), ref)
+				costFunction = append(costFunction, fanInCost)
+				continue
+			}
+			// consider every cube as +1 cost (inputs of the final OR gate)
+			costFunction = append(costFunction, ref)
+
+		}
+	default:
+		panic(fmt.Sprintf("unexpected optimizer.CostType: %#v", cost))
 	}
 
 	template := strings.ReplaceAll(template, "{obj}", " obj: "+strings.Join(costFunction, " + "))

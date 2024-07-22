@@ -14,7 +14,7 @@ func FuzzMobo(f *testing.F) {
 	f.Add(0)
 	f.Fuzz(func(t *testing.T, seed int) {
 		outs := mobo.RandomOutputs(seed)
-		ports, _, _ := mobo.Solve(outs, optimizer.GATE)
+		ports, _, _ := mobo.Solve(outs, optimizer.GATE_COST)
 
 		err := mobo.Assert(outs, ports)
 		require.NoError(t, err)
